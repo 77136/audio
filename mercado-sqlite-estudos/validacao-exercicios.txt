@@ -1,0 +1,10 @@
+ABA EXERCÍCIOS — VALIDAÇÃO
+
+32 exercícios no guia, em 3 níveis.
+19 verificações em Chrome no desktop (1440 px) aprovadas.
+19 verificações em Chrome em largura de celular (390 px) aprovadas.
+19 verificações de regressão na aba Aprendizagem aprovadas.
+57 verificações no navegador, zero falhas.
+Dicas inicialmente recolhidas; SQL e resultados somente na aba Aprendizagem.
+Links entre exercício, dica, resposta e guia conferidos.
+Sem overflow horizontal nas duas larguras.

@@ -1,0 +1,1468 @@
+{
+  "levels": [
+    {
+      "id": "iniciante",
+      "label": "Iniciante",
+      "description": "Aprenda a ler tabelas, filtrar produtos e vendas, tratar valores ausentes, ordenar resultados e calcular os primeiros resumos.",
+      "ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05",
+        "E06",
+        "E07"
+      ]
+    },
+    {
+      "id": "intermediario",
+      "label": "Intermediário",
+      "description": "Conecte tabelas, agrupe informações, filtre grupos e transforme cadastros, vendas e estoque em relatórios do supermercado.",
+      "ids": [
+        "E08",
+        "E09",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15",
+        "E16",
+        "E18",
+        "E19",
+        "E22",
+        "E24",
+        "E25"
+      ]
+    },
+    {
+      "id": "avancado",
+      "label": "Avançado",
+      "description": "Combine consultas e CTEs, use funções de janela e confira regras de negócio sem multiplicar valores nos relacionamentos.",
+      "ids": [
+        "E17",
+        "E20",
+        "E21",
+        "E23",
+        "E26",
+        "E27",
+        "E28",
+        "E29",
+        "E30",
+        "E31",
+        "E32"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "E01",
+      "title": "Sua primeira consulta",
+      "level": "iniciante",
+      "question": "Liste id, codigo, nome e preço de venda em reais dos primeiros 10 produtos, em ordem crescente de id.",
+      "hint": "SELECT escolhe as colunas; ORDER BY ordena as linhas; LIMIT limita a quantidade retornada.",
+      "explanation": "FROM produtos define o cadastro que será consultado, e SELECT escolhe o que aparecerá na resposta. A expressão preco_venda_centavos / 100.0 transforma centavos em reais, enquanto AS dá um nome à coluna calculada. ORDER BY id torna a ordem previsível, e LIMIT 10 mostra somente os dez primeiros produtos do mercado.",
+      "concepts": [
+        "SELECT",
+        "FROM",
+        "Aliases",
+        "ORDER BY",
+        "LIMIT",
+        "Centavos e reais"
+      ],
+      "sql": "SELECT id, codigo, nome, preco_venda_centavos / 100.0 AS preco_reais\nFROM produtos\nORDER BY id\nLIMIT 10;",
+      "expected_rows": 10,
+      "preview": {
+        "columns": [
+          "id",
+          "codigo",
+          "nome",
+          "preco_reais"
+        ],
+        "rows": [
+          [
+            1,
+            "MER-0001",
+            "Arroz branco 5 kg",
+            25.9
+          ],
+          [
+            2,
+            "MER-0002",
+            "Feijao carioca 1 kg",
+            7.99
+          ],
+          [
+            3,
+            "MER-0003",
+            "Acucar cristal 1 kg",
+            4.59
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E02",
+      "title": "Filtrar produtos por situação e preço",
+      "level": "iniciante",
+      "question": "Liste id, nome, unidade e preço em reais dos produtos ativos que custam de R$ 10 a R$ 25, incluindo os limites. Ordene pelo preço crescente e depois pelo id.",
+      "hint": "Combine ativo = 1 com BETWEEN 1000 AND 2500, pois o preço armazenado está em centavos.",
+      "explanation": "WHERE mantém somente os produtos que atendem às duas condições ligadas por AND. BETWEEN inclui os limites de 1000 e 2500 centavos, portanto produtos de exatamente R$ 10 ou R$ 25 entram na lista. ORDER BY usa o preço para ordenar e o id para desempatar, ajudando a comparar opções ativas na mesma faixa de preço.",
+      "concepts": [
+        "WHERE",
+        "AND",
+        "BETWEEN",
+        "ORDER BY",
+        "Filtros numéricos"
+      ],
+      "sql": "SELECT id, nome, unidade, preco_venda_centavos / 100.0 AS preco_reais\nFROM produtos\nWHERE ativo = 1\n  AND preco_venda_centavos BETWEEN 1000 AND 2500\nORDER BY preco_venda_centavos, id;",
+      "expected_rows": 34,
+      "preview": {
+        "columns": [
+          "id",
+          "nome",
+          "unidade",
+          "preco_reais"
+        ],
+        "rows": [
+          [
+            43,
+            "Pao integral 450 g",
+            "UN",
+            10.9
+          ],
+          [
+            56,
+            "Suco de laranja 1 L",
+            "UN",
+            10.9
+          ],
+          [
+            12,
+            "Maca gala",
+            "KG",
+            11.9
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E03",
+      "title": "Encontrar produtos pelo nome",
+      "level": "iniciante",
+      "question": "Liste id e nome dos produtos cujo nome contenha “arroz”, em ordem alfabética.",
+      "hint": "Use LIKE com % antes e depois do trecho procurado.",
+      "explanation": "LIKE compara o nome com um padrão de texto. Os sinais % aceitam qualquer sequência antes ou depois de arroz, permitindo encontrar o termo em qualquer posição do nome. No SQLite, a comparação padrão ignora diferenças entre maiúsculas e minúsculas para essas letras ASCII; ORDER BY organiza os produtos encontrados pelo nome.",
+      "concepts": [
+        "WHERE",
+        "LIKE",
+        "Curingas",
+        "Busca textual",
+        "ORDER BY"
+      ],
+      "sql": "SELECT id, nome\nFROM produtos\nWHERE nome LIKE '%arroz%'\nORDER BY nome, id;",
+      "expected_rows": 1,
+      "preview": {
+        "columns": [
+          "id",
+          "nome"
+        ],
+        "rows": [
+          [
+            1,
+            "Arroz branco 5 kg"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E04",
+      "title": "Reconhecer dados ausentes",
+      "level": "iniciante",
+      "question": "Liste id, nome e cidade dos clientes que não têm email cadastrado, em ordem crescente de id.",
+      "hint": "Ausência de valor é testada com IS NULL. A expressão email = NULL não faz esse teste.",
+      "explanation": "NULL representa uma informação ausente no cadastro. WHERE email IS NULL seleciona os clientes cujo email não foi informado, uma lista útil para revisar o cadastro do mercado. O teste não procura uma string vazia, e ORDER BY id mantém uma sequência estável para conferir os registros.",
+      "concepts": [
+        "NULL",
+        "IS NULL",
+        "WHERE",
+        "Qualidade cadastral"
+      ],
+      "sql": "SELECT id, nome, cidade\nFROM clientes\nWHERE email IS NULL\nORDER BY id;",
+      "expected_rows": 56,
+      "preview": {
+        "columns": [
+          "id",
+          "nome",
+          "cidade"
+        ],
+        "rows": [
+          [
+            8,
+            "Henrique Silva (F008)",
+            "Valinhos"
+          ],
+          [
+            16,
+            "Paulo Silva (F016)",
+            "Valinhos"
+          ],
+          [
+            24,
+            "Felipe Silva (F024)",
+            "Valinhos"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E05",
+      "title": "Montar uma lista dos mais caros",
+      "level": "iniciante",
+      "question": "Mostre os nomes e os preços em reais dos cinco produtos mais caros. Em caso de empate no preço, apresente o menor id primeiro.",
+      "hint": "DESC coloca os maiores valores primeiro. Inclua id como segundo critério e use LIMIT 5.",
+      "explanation": "ORDER BY preco_venda_centavos DESC posiciona os maiores preços no início do resultado. O segundo critério, id, define qual produto aparece primeiro quando dois custam o mesmo valor. LIMIT 5 recorta a lista depois da ordenação, formando um relatório dos cinco produtos mais caros do cadastro.",
+      "concepts": [
+        "ORDER BY",
+        "DESC",
+        "Desempate",
+        "LIMIT",
+        "Top N"
+      ],
+      "sql": "SELECT nome, preco_venda_centavos / 100.0 AS preco_reais\nFROM produtos\nORDER BY preco_venda_centavos DESC, id\nLIMIT 5;",
+      "expected_rows": 5,
+      "preview": {
+        "columns": [
+          "nome",
+          "preco_reais"
+        ],
+        "rows": [
+          [
+            "Alcatra bovina",
+            54.9
+          ],
+          [
+            "File de tilapia",
+            49.9
+          ],
+          [
+            "Patinho bovino",
+            44.9
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E06",
+      "title": "Consultar vendas de um mês",
+      "level": "iniciante",
+      "question": "Liste id, loja_id, data_venda e canal das vendas concluídas de junho de 2026, em ordem de data e id.",
+      "hint": "Use data_venda >= '2026-06-01' e data_venda < '2026-07-01', além do filtro de status.",
+      "explanation": "O status CONCLUIDA elimina as operações canceladas antes de montar a lista. O intervalo inclui o início de junho e exclui o início de julho, abrangendo todos os horários do último dia do mês. Como as datas usam o formato ISO, essas comparações de texto funcionam para selecionar o movimento de junho do mercado.",
+      "concepts": [
+        "WHERE",
+        "AND",
+        "Intervalos de datas",
+        "Datas ISO",
+        "Status da venda"
+      ],
+      "sql": "SELECT id, loja_id, data_venda, canal\nFROM vendas\nWHERE status = 'CONCLUIDA'\n  AND data_venda >= '2026-06-01'\n  AND data_venda < '2026-07-01'\nORDER BY data_venda, id;",
+      "expected_rows": 173,
+      "preview": {
+        "columns": [
+          "id",
+          "loja_id",
+          "data_venda",
+          "canal"
+        ],
+        "rows": [
+          [
+            867,
+            1,
+            "2026-06-01 08:54:29",
+            "LOJA"
+          ],
+          [
+            868,
+            2,
+            "2026-06-01 11:31:26",
+            "LOJA"
+          ],
+          [
+            871,
+            1,
+            "2026-06-01 13:23:33",
+            "LOJA"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E07",
+      "title": "Resumir os preços do cadastro",
+      "level": "iniciante",
+      "question": "Para os produtos ativos, calcule a quantidade de produtos e os preços mínimo, máximo e médio em reais.",
+      "hint": "COUNT, MIN, MAX e AVG produzem resumos. Aplique o filtro de produtos ativos antes de agregar.",
+      "explanation": "WHERE ativo = 1 define quais produtos participam do cálculo. COUNT conta esses registros, MIN e MAX encontram os extremos de preço, e AVG calcula a média dos preços do cadastro, sem considerar quantidade vendida. Como não existe GROUP BY, todas as linhas selecionadas viram um único resumo; ROUND apresenta a média com duas casas decimais.",
+      "concepts": [
+        "COUNT",
+        "MIN",
+        "MAX",
+        "AVG",
+        "ROUND",
+        "Agregação"
+      ],
+      "sql": "SELECT COUNT(*) AS quantidade_produtos,\n       MIN(preco_venda_centavos) / 100.0 AS menor_preco_reais,\n       MAX(preco_venda_centavos) / 100.0 AS maior_preco_reais,\n       ROUND(AVG(preco_venda_centavos) / 100.0, 2) AS preco_medio_reais\nFROM produtos\nWHERE ativo = 1;",
+      "expected_rows": 1,
+      "preview": {
+        "columns": [
+          "quantidade_produtos",
+          "menor_preco_reais",
+          "maior_preco_reais",
+          "preco_medio_reais"
+        ],
+        "rows": [
+          [
+            118,
+            1.99,
+            54.9,
+            12.04
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E08",
+      "title": "Filtrar categorias depois de agrupar",
+      "level": "intermediario",
+      "question": "Para cada categoria_id com pelo menos oito produtos ativos, mostre a quantidade de produtos e o preço médio em reais. Ordene pela categoria.",
+      "hint": "WHERE filtra produtos; GROUP BY forma os grupos; HAVING decide quais grupos permanecem.",
+      "explanation": "WHERE remove os produtos inativos antes de qualquer contagem. GROUP BY categoria_id cria um resumo separado para cada categoria, e HAVING COUNT(*) >= 8 mantém apenas as categorias que atingem o mínimo. Assim é possível identificar setores do mercado com uma variedade suficiente de produtos ativos, junto de sua média de preço.",
+      "concepts": [
+        "GROUP BY",
+        "HAVING",
+        "WHERE",
+        "COUNT",
+        "AVG"
+      ],
+      "sql": "SELECT categoria_id, COUNT(*) AS quantidade_produtos,\n       ROUND(AVG(preco_venda_centavos) / 100.0, 2) AS preco_medio_reais\nFROM produtos\nWHERE ativo = 1\nGROUP BY categoria_id\nHAVING COUNT(*) >= 8\nORDER BY categoria_id;",
+      "expected_rows": 12,
+      "preview": {
+        "columns": [
+          "categoria_id",
+          "quantidade_produtos",
+          "preco_medio_reais"
+        ],
+        "rows": [
+          [
+            1,
+            10,
+            8.98
+          ],
+          [
+            2,
+            10,
+            7.28
+          ],
+          [
+            3,
+            10,
+            31.6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E09",
+      "title": "Unir produto, categoria e marca",
+      "level": "intermediario",
+      "question": "Liste id e nome do produto, nome da categoria, nome da marca e preço em reais. Ordene por categoria, produto e id.",
+      "hint": "Relacione produtos.categoria_id com categorias.id e produtos.marca_id com marcas.id.",
+      "explanation": "Os dois INNER JOINs usam as chaves do produto para buscar os nomes da categoria e da marca. Os aliases p, c e m deixam claro a qual tabela pertence cada coluna nome. Como cada produto aponta para uma categoria e uma marca, os relacionamentos enriquecem a descrição sem multiplicar os produtos no relatório.",
+      "concepts": [
+        "INNER JOIN",
+        "Chave estrangeira",
+        "Aliases de tabela",
+        "Relacionamento N:1"
+      ],
+      "sql": "SELECT p.id, p.nome AS produto, c.nome AS categoria, m.nome AS marca,\n       p.preco_venda_centavos / 100.0 AS preco_reais\nFROM produtos AS p\nINNER JOIN categorias AS c ON c.id = p.categoria_id\nINNER JOIN marcas AS m ON m.id = p.marca_id\nORDER BY c.nome, p.nome, p.id;",
+      "expected_rows": 120,
+      "preview": {
+        "columns": [
+          "id",
+          "produto",
+          "categoria",
+          "marca",
+          "preco_reais"
+        ],
+        "rows": [
+          [
+            22,
+            "Alcatra bovina",
+            "Acougue",
+            "Amigo Bicho",
+            54.9
+          ],
+          [
+            30,
+            "Asa de frango",
+            "Acougue",
+            "Campo Claro",
+            17.9
+          ],
+          [
+            27,
+            "Carne moida bovina",
+            "Acougue",
+            "Cozinha Boa",
+            34.9
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E10",
+      "title": "Manter vendas sem cliente identificado",
+      "level": "intermediario",
+      "question": "Mostre as primeiras 20 vendas concluídas, por id, com loja, data, cliente e total em reais. Quando não houver cliente identificado, exiba “Nao identificado”.",
+      "hint": "Use INNER JOIN para a loja e LEFT JOIN para o cliente. COALESCE fornece o texto para o nome ausente.",
+      "explanation": "A view vw_vendas_resumo já reúne os itens em uma única linha por venda. INNER JOIN acrescenta a loja, enquanto LEFT JOIN preserva as compras feitas sem cliente cadastrado. COALESCE troca o nome ausente pelo texto de apresentação, e o filtro de status garante que a lista contenha somente vendas concluídas.",
+      "concepts": [
+        "Views",
+        "INNER JOIN",
+        "LEFT JOIN",
+        "COALESCE",
+        "Relacionamento opcional"
+      ],
+      "sql": "SELECT v.venda_id, l.nome AS loja, v.data_venda,\n       COALESCE(c.nome, 'Nao identificado') AS cliente,\n       v.total_centavos / 100.0 AS total_reais\nFROM vw_vendas_resumo AS v\nINNER JOIN lojas AS l ON l.id = v.loja_id\nLEFT JOIN clientes AS c ON c.id = v.cliente_id\nWHERE v.status = 'CONCLUIDA'\nORDER BY v.venda_id\nLIMIT 20;",
+      "expected_rows": 20,
+      "preview": {
+        "columns": [
+          "venda_id",
+          "loja",
+          "data_venda",
+          "cliente",
+          "total_reais"
+        ],
+        "rows": [
+          [
+            1,
+            "Bom Bairro - Vila Verde",
+            "2026-01-01 12:48:59",
+            "Ana Silva (F001)",
+            181.73
+          ],
+          [
+            2,
+            "Bom Bairro - Vila Verde",
+            "2026-01-01 18:44:48",
+            "Bruno Silva (F002)",
+            173.47
+          ],
+          [
+            3,
+            "Bom Bairro - Jardim Sol",
+            "2026-01-01 11:35:10",
+            "Carla Silva (F003)",
+            287.56
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E11",
+      "title": "Encontrar clientes que ainda não compraram",
+      "level": "intermediario",
+      "question": "Liste id e nome dos clientes que nunca tiveram uma venda concluída. Inclua quem teve somente vendas canceladas e ordene por id.",
+      "hint": "Coloque status = 'CONCLUIDA' no ON do LEFT JOIN e teste v.id IS NULL no WHERE.",
+      "explanation": "LEFT JOIN tenta encontrar apenas vendas concluídas para cada cliente, porque o status está na condição ON. Quando não há correspondência, as colunas da venda ficam NULL; WHERE v.id IS NULL seleciona justamente esses clientes. Essa posição do filtro preserva tanto quem nunca comprou quanto quem só teve pedidos cancelados, formando uma lista útil para acompanhar clientes ainda sem compra efetiva.",
+      "concepts": [
+        "LEFT JOIN",
+        "ON",
+        "IS NULL",
+        "Ausência de relacionamento",
+        "Status da venda"
+      ],
+      "sql": "SELECT c.id, c.nome\nFROM clientes AS c\nLEFT JOIN vendas AS v ON v.cliente_id = c.id AND v.status = 'CONCLUIDA'\nWHERE v.id IS NULL\nORDER BY c.id;",
+      "expected_rows": 51,
+      "preview": {
+        "columns": [
+          "id",
+          "nome"
+        ],
+        "rows": [
+          [
+            116,
+            "Pedro Santos (F116)"
+          ],
+          [
+            401,
+            "Julia Barbosa (F401)"
+          ],
+          [
+            402,
+            "Lucas Barbosa (F402)"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E12",
+      "title": "Comparar fornecedores de um produto",
+      "level": "intermediario",
+      "question": "Liste os produtos oferecidos por pelo menos dois fornecedores, com id, nome, quantidade de fornecedores e menor e maior custo ofertado em reais. Ordene pela quantidade decrescente e pelo id.",
+      "hint": "A tabela produto_fornecedores liga produtos e fornecedores. Agrupe por produto e use HAVING.",
+      "explanation": "produto_fornecedores registra uma linha para cada par produto e fornecedor, representando um relacionamento muitos para muitos. Após o JOIN, GROUP BY reúne as ofertas do mesmo produto; COUNT conta os fornecedores, e MIN e MAX comparam seus custos. HAVING mantém os produtos com alternativas de abastecimento, permitindo ao comprador do mercado comparar a faixa de preços ofertados.",
+      "concepts": [
+        "Relacionamento N:N",
+        "Tabela de ligação",
+        "GROUP BY",
+        "HAVING",
+        "MIN",
+        "MAX"
+      ],
+      "sql": "SELECT p.id, p.nome AS produto, COUNT(*) AS quantidade_fornecedores,\n       MIN(pf.custo_centavos) / 100.0 AS menor_custo_reais,\n       MAX(pf.custo_centavos) / 100.0 AS maior_custo_reais\nFROM produtos AS p\nINNER JOIN produto_fornecedores AS pf ON pf.produto_id = p.id\nGROUP BY p.id, p.nome\nHAVING COUNT(*) >= 2\nORDER BY quantidade_fornecedores DESC, p.id;",
+      "expected_rows": 120,
+      "preview": {
+        "columns": [
+          "id",
+          "produto",
+          "quantidade_fornecedores",
+          "menor_custo_reais",
+          "maior_custo_reais"
+        ],
+        "rows": [
+          [
+            1,
+            "Arroz branco 5 kg",
+            2,
+            16.54,
+            17.2
+          ],
+          [
+            2,
+            "Feijao carioca 1 kg",
+            2,
+            5.36,
+            5.57
+          ],
+          [
+            3,
+            "Acucar cristal 1 kg",
+            2,
+            3.3,
+            3.43
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E13",
+      "title": "Comparar faturamento e ticket das lojas",
+      "level": "intermediario",
+      "question": "Para cada loja com vendas concluídas, mostre o nome, a quantidade de vendas, o faturamento líquido e o ticket médio em reais. Ordene pelo maior faturamento.",
+      "hint": "Use vw_vendas_resumo para que cada linha represente uma venda inteira, em vez de um item.",
+      "explanation": "A view de resumo tem uma linha por venda, então COUNT(*) mede o número de compras e AVG(total_centavos) mede o ticket médio. Depois de remover as canceladas, GROUP BY separa os resultados por loja, e SUM calcula a receita líquida de descontos. O JOIN traz o nome da filial para comparar seu movimento com o das outras lojas.",
+      "concepts": [
+        "Views",
+        "INNER JOIN",
+        "GROUP BY",
+        "SUM",
+        "AVG",
+        "Ticket médio"
+      ],
+      "sql": "SELECT l.nome AS loja, COUNT(*) AS quantidade_vendas,\n       SUM(v.total_centavos) / 100.0 AS faturamento_reais,\n       ROUND(AVG(v.total_centavos) / 100.0, 2) AS ticket_medio_reais\nFROM vw_vendas_resumo AS v\nINNER JOIN lojas AS l ON l.id = v.loja_id\nWHERE v.status = 'CONCLUIDA'\nGROUP BY l.id, l.nome\nORDER BY SUM(v.total_centavos) DESC, l.id;",
+      "expected_rows": 3,
+      "preview": {
+        "columns": [
+          "loja",
+          "quantidade_vendas",
+          "faturamento_reais",
+          "ticket_medio_reais"
+        ],
+        "rows": [
+          [
+            "Bom Bairro - Centro",
+            673,
+            108155.99,
+            160.71
+          ],
+          [
+            "Bom Bairro - Jardim Sol",
+            458,
+            70755.28,
+            154.49
+          ],
+          [
+            "Bom Bairro - Vila Verde",
+            318,
+            50237.25,
+            157.98
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E14",
+      "title": "Identificar clientes de maior gasto",
+      "level": "intermediario",
+      "question": "Liste os clientes identificados que gastaram mais de R$ 1.000 em vendas concluídas, com id, nome, quantidade de vendas e gasto total. Ordene pelo gasto decrescente e pelo id.",
+      "hint": "Agrupe o resumo de vendas por cliente e teste SUM(total_centavos) > 100000 no HAVING.",
+      "explanation": "O INNER JOIN associa cada cliente às suas vendas, e WHERE exclui as canceladas. GROUP BY reúne o histórico de cada pessoa para contar suas compras e somar quanto gastou. HAVING filtra pelo gasto agregado, medido em centavos, identificando quem ultrapassou R$ 1.000 no mercado.",
+      "concepts": [
+        "INNER JOIN",
+        "GROUP BY",
+        "HAVING",
+        "SUM",
+        "COUNT",
+        "Histórico do cliente"
+      ],
+      "sql": "SELECT c.id, c.nome, COUNT(*) AS quantidade_vendas,\n       SUM(v.total_centavos) / 100.0 AS gasto_total_reais\nFROM clientes AS c\nINNER JOIN vw_vendas_resumo AS v ON v.cliente_id = c.id\nWHERE v.status = 'CONCLUIDA'\nGROUP BY c.id, c.nome\nHAVING SUM(v.total_centavos) > 100000\nORDER BY SUM(v.total_centavos) DESC, c.id;",
+      "expected_rows": 18,
+      "preview": {
+        "columns": [
+          "id",
+          "nome",
+          "quantidade_vendas",
+          "gasto_total_reais"
+        ],
+        "rows": [
+          [
+            175,
+            "Laura Costa (F175)",
+            8,
+            1583.63
+          ],
+          [
+            307,
+            "Gabriela Martins (F307)",
+            8,
+            1569.68
+          ],
+          [
+            313,
+            "Mariana Martins (F313)",
+            7,
+            1505.8
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E15",
+      "title": "Medir a receita de cada produto",
+      "level": "intermediario",
+      "question": "Mostre os dez produtos de maior receita líquida nas vendas concluídas, com id, produto, unidade, quantidade vendida, quantidade de vendas distintas e receita em reais. Desempate pelo menor id.",
+      "hint": "Agrupe vw_itens_venda por produto e unidade. COUNT(DISTINCT venda_id) conta vendas diferentes.",
+      "explanation": "A view de itens contém a quantidade e o total líquido de cada produto em cada venda. GROUP BY reúne o movimento de cada produto, preservando sua unidade para não misturar quilos com unidades; SUM soma quantidade e receita, enquanto COUNT(DISTINCT venda_id) conta as compras em que ele apareceu. A ordenação por receita e LIMIT 10 mostram os produtos que mais contribuíram para o faturamento concluído.",
+      "concepts": [
+        "GROUP BY",
+        "SUM",
+        "COUNT DISTINCT",
+        "Top N",
+        "UN e KG",
+        "Receita líquida"
+      ],
+      "sql": "SELECT produto_id, produto, unidade,\n       ROUND(SUM(quantidade), 3) AS quantidade_vendida,\n       COUNT(DISTINCT venda_id) AS quantidade_vendas,\n       SUM(total_centavos) / 100.0 AS receita_reais\nFROM vw_itens_venda\nWHERE status = 'CONCLUIDA'\nGROUP BY produto_id, produto, unidade\nORDER BY SUM(total_centavos) DESC, produto_id\nLIMIT 10;",
+      "expected_rows": 10,
+      "preview": {
+        "columns": [
+          "produto_id",
+          "produto",
+          "unidade",
+          "quantidade_vendida",
+          "quantidade_vendas",
+          "receita_reais"
+        ],
+        "rows": [
+          [
+            101,
+            "Racao caes adultos 3 kg",
+            "UN",
+            198.0,
+            102,
+            7592.59
+          ],
+          [
+            37,
+            "Queijo prato",
+            "KG",
+            173.604,
+            96,
+            7512.87
+          ],
+          [
+            22,
+            "Alcatra bovina",
+            "KG",
+            135.061,
+            79,
+            7098.44
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E16",
+      "title": "Avaliar os descontos por canal",
+      "level": "intermediario",
+      "question": "Para cada canal das vendas concluídas, mostre quantidade de vendas, valor bruto, descontos, receita líquida e taxa de desconto percentual com duas casas. Ordene pelo canal.",
+      "hint": "A taxa é 100.0 * SUM(desconto_centavos) / SUM(valor_bruto_centavos). Proteja o denominador com NULLIF.",
+      "explanation": "GROUP BY canal reúne as compras de loja, delivery e retirada após o filtro de vendas concluídas. As somas permitem comparar o valor antes dos descontos com a receita efetiva de cada canal. A taxa divide o desconto total pelo valor bruto total, produzindo um percentual ponderado pelo valor das vendas; NULLIF evita uma divisão por zero.",
+      "concepts": [
+        "GROUP BY",
+        "SUM",
+        "NULLIF",
+        "ROUND",
+        "Percentual ponderado",
+        "Canais de venda"
+      ],
+      "sql": "SELECT canal, COUNT(*) AS quantidade_vendas,\n       SUM(valor_bruto_centavos) / 100.0 AS valor_bruto_reais,\n       SUM(desconto_centavos) / 100.0 AS descontos_reais,\n       SUM(total_centavos) / 100.0 AS receita_reais,\n       ROUND(100.0 * SUM(desconto_centavos)\n             / NULLIF(SUM(valor_bruto_centavos), 0), 2) AS taxa_desconto_percentual\nFROM vw_vendas_resumo\nWHERE status = 'CONCLUIDA'\nGROUP BY canal\nORDER BY canal;",
+      "expected_rows": 3,
+      "preview": {
+        "columns": [
+          "canal",
+          "quantidade_vendas",
+          "valor_bruto_reais",
+          "descontos_reais",
+          "receita_reais",
+          "taxa_desconto_percentual"
+        ],
+        "rows": [
+          [
+            "DELIVERY",
+            232,
+            38183.86,
+            559.64,
+            37624.22,
+            1.47
+          ],
+          [
+            "LOJA",
+            1090,
+            173882.89,
+            3030.66,
+            170852.23,
+            1.74
+          ],
+          [
+            "RETIRADA",
+            127,
+            21004.13,
+            332.06,
+            20672.07,
+            1.58
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E17",
+      "title": "Somar pagamentos sem multiplicar vendas",
+      "level": "avancado",
+      "question": "Liste as vendas concluídas que têm dois ou mais registros de pagamento. Mostre id da venda, quantidade de pagamentos, total da venda e total pago em reais, em ordem de id.",
+      "hint": "Agrupe pagamentos por venda em uma subconsulta antes de unir ao resumo de vendas.",
+      "explanation": "A subconsulta produz uma linha por venda com a contagem e a soma dos pagamentos. O JOIN dessa tabela resumida com vw_vendas_resumo mantém a mesma granularidade dos dois lados, impedindo que o total da venda seja repetido por item ou pagamento. O WHERE seleciona as vendas concluídas com pelo menos dois pagamentos, como uma compra dividida entre dinheiro e cartão.",
+      "concepts": [
+        "Subconsulta no FROM",
+        "Pré-agregação",
+        "Granularidade",
+        "INNER JOIN",
+        "Pagamentos divididos"
+      ],
+      "sql": "SELECT v.venda_id, p.quantidade_pagamentos,\n       v.total_centavos / 100.0 AS total_venda_reais,\n       p.total_pago_centavos / 100.0 AS total_pago_reais\nFROM vw_vendas_resumo AS v\nINNER JOIN (\n    SELECT venda_id, COUNT(*) AS quantidade_pagamentos,\n           SUM(valor_centavos) AS total_pago_centavos\n    FROM pagamentos\n    GROUP BY venda_id\n) AS p ON p.venda_id = v.venda_id\nWHERE v.status = 'CONCLUIDA'\n  AND p.quantidade_pagamentos >= 2\nORDER BY v.venda_id;",
+      "expected_rows": 207,
+      "preview": {
+        "columns": [
+          "venda_id",
+          "quantidade_pagamentos",
+          "total_venda_reais",
+          "total_pago_reais"
+        ],
+        "rows": [
+          [
+            7,
+            2,
+            102.79,
+            102.79
+          ],
+          [
+            14,
+            2,
+            179.64,
+            179.64
+          ],
+          [
+            21,
+            2,
+            121.37,
+            121.37
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E18",
+      "title": "Analisar as formas de pagamento",
+      "level": "intermediario",
+      "question": "Para cada forma usada em vendas concluídas, mostre seu nome, a quantidade de vendas distintas e o total recebido em reais. Ordene pelo total decrescente e pelo nome.",
+      "hint": "Una pagamentos, formas_pagamento e vendas. Conte venda_id com DISTINCT, sem adicionar itens_venda.",
+      "explanation": "A consulta parte dos pagamentos porque cada linha já representa um valor efetivamente recebido em uma forma. Os JOINs acrescentam o nome da forma e permitem excluir vendas canceladas. GROUP BY soma os valores por forma, enquanto COUNT(DISTINCT p.venda_id) evita contar duas vezes uma venda com pagamentos repetidos na mesma forma; uma compra dividida entre formas pode participar de mais de um grupo.",
+      "concepts": [
+        "INNER JOIN",
+        "GROUP BY",
+        "COUNT DISTINCT",
+        "SUM",
+        "Formas de pagamento"
+      ],
+      "sql": "SELECT f.nome AS forma_pagamento,\n       COUNT(DISTINCT p.venda_id) AS quantidade_vendas,\n       SUM(p.valor_centavos) / 100.0 AS total_recebido_reais\nFROM pagamentos AS p\nINNER JOIN formas_pagamento AS f ON f.id = p.forma_pagamento_id\nINNER JOIN vendas AS v ON v.id = p.venda_id\nWHERE v.status = 'CONCLUIDA'\nGROUP BY f.id, f.nome\nORDER BY SUM(p.valor_centavos) DESC, f.nome;",
+      "expected_rows": 5,
+      "preview": {
+        "columns": [
+          "forma_pagamento",
+          "quantidade_vendas",
+          "total_recebido_reais"
+        ],
+        "rows": [
+          [
+            "Pix",
+            496,
+            71261.91
+          ],
+          [
+            "Cartao de debito",
+            381,
+            56765.0
+          ],
+          [
+            "Cartao de credito",
+            345,
+            47096.79
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E19",
+      "title": "Procurar produtos sem nenhuma venda",
+      "level": "intermediario",
+      "question": "Liste id, codigo e nome dos produtos que nunca participaram de uma venda concluída, em ordem de id. Inclua produtos que só aparecem em vendas canceladas.",
+      "hint": "Dentro de NOT EXISTS, procure itens do produto ligados a vendas com status CONCLUIDA.",
+      "explanation": "Para cada produto da consulta externa, a subconsulta procura uma participação em venda concluída usando i.produto_id = p.id. NOT EXISTS mantém o produto somente quando essa busca não encontra nenhuma linha. O resultado ajuda a identificar produtos sem saída efetiva, mesmo que algum deles tenha aparecido em uma compra cancelada.",
+      "concepts": [
+        "NOT EXISTS",
+        "Subconsulta correlacionada",
+        "INNER JOIN",
+        "Ausência de vendas"
+      ],
+      "sql": "SELECT p.id, p.codigo, p.nome\nFROM produtos AS p\nWHERE NOT EXISTS (\n    SELECT 1\n    FROM itens_venda AS i\n    INNER JOIN vendas AS v ON v.id = i.venda_id\n    WHERE i.produto_id = p.id\n      AND v.status = 'CONCLUIDA'\n)\nORDER BY p.id;",
+      "expected_rows": 4,
+      "preview": {
+        "columns": [
+          "id",
+          "codigo",
+          "nome"
+        ],
+        "rows": [
+          [
+            117,
+            "MER-0117",
+            "Pote reutilizavel 1 L"
+          ],
+          [
+            118,
+            "MER-0118",
+            "Pano de prato"
+          ],
+          [
+            119,
+            "MER-0119",
+            "Luva de limpeza par"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E20",
+      "title": "Encontrar clientes que compram em dois canais",
+      "level": "avancado",
+      "question": "Liste id e nome dos clientes com pelo menos uma venda concluída no canal LOJA e outra no canal DELIVERY. Ordene por id.",
+      "hint": "Use dois EXISTS correlacionados pelo cliente, um para cada canal, unidos por AND.",
+      "explanation": "Cada EXISTS verifica uma condição independente no histórico do mesmo cliente. O primeiro exige uma venda concluída em LOJA, e o segundo exige uma em DELIVERY; AND determina que os dois requisitos devem ser atendidos. Como a consulta externa percorre clientes e só verifica existência, cada pessoa aparece uma única vez, mesmo que tenha várias compras nos dois canais.",
+      "concepts": [
+        "EXISTS",
+        "AND",
+        "Subconsultas correlacionadas",
+        "Interseção de condições",
+        "Canais de venda"
+      ],
+      "sql": "SELECT c.id, c.nome\nFROM clientes AS c\nWHERE EXISTS (\n    SELECT 1\n    FROM vendas AS v\n    WHERE v.cliente_id = c.id\n      AND v.status = 'CONCLUIDA'\n      AND v.canal = 'LOJA'\n)\nAND EXISTS (\n    SELECT 1\n    FROM vendas AS v\n    WHERE v.cliente_id = c.id\n      AND v.status = 'CONCLUIDA'\n      AND v.canal = 'DELIVERY'\n)\nORDER BY c.id;",
+      "expected_rows": 161,
+      "preview": {
+        "columns": [
+          "id",
+          "nome"
+        ],
+        "rows": [
+          [
+            2,
+            "Bruno Silva (F002)"
+          ],
+          [
+            6,
+            "Fabio Silva (F006)"
+          ],
+          [
+            7,
+            "Gabriela Silva (F007)"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E21",
+      "title": "Comparar preço com a própria categoria",
+      "level": "avancado",
+      "question": "Liste os produtos ativos com preço acima da média dos produtos ativos da mesma categoria. Mostre id, nome, categoria e preço em reais; ordene por categoria, preço decrescente e id.",
+      "hint": "A subconsulta de AVG deve filtrar p2.categoria_id = p.categoria_id, usando o produto da consulta externa.",
+      "explanation": "Para avaliar cada produto, a subconsulta correlacionada calcula a média apenas de seus pares ativos da mesma categoria. A condição de preço compara o produto com essa referência local, em vez de usar uma média única para todo o supermercado. O JOIN acrescenta o nome da categoria e a ordenação facilita enxergar quais produtos estão acima do preço médio em cada setor.",
+      "concepts": [
+        "Subconsulta correlacionada",
+        "AVG",
+        "INNER JOIN",
+        "Comparação por grupo",
+        "WHERE"
+      ],
+      "sql": "SELECT p.id, p.nome, c.nome AS categoria,\n       p.preco_venda_centavos / 100.0 AS preco_reais\nFROM produtos AS p\nINNER JOIN categorias AS c ON c.id = p.categoria_id\nWHERE p.ativo = 1\n  AND p.preco_venda_centavos > (\n      SELECT AVG(p2.preco_venda_centavos)\n      FROM produtos AS p2\n      WHERE p2.categoria_id = p.categoria_id\n        AND p2.ativo = 1\n  )\nORDER BY c.nome, p.preco_venda_centavos DESC, p.id;",
+      "expected_rows": 53,
+      "preview": {
+        "columns": [
+          "id",
+          "nome",
+          "categoria",
+          "preco_reais"
+        ],
+        "rows": [
+          [
+            22,
+            "Alcatra bovina",
+            "Acougue",
+            54.9
+          ],
+          [
+            29,
+            "File de tilapia",
+            "Acougue",
+            49.9
+          ],
+          [
+            21,
+            "Patinho bovino",
+            "Acougue",
+            44.9
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E22",
+      "title": "Criar faixas de valor com CASE",
+      "level": "intermediario",
+      "question": "Distribua as vendas concluídas nas faixas “Ate R$ 49,99”, “De R$ 50 a R$ 149,99” e “A partir de R$ 150”. Mostre a quantidade de vendas e a receita em reais de cada faixa existente, nessa ordem.",
+      "hint": "CASE classifica o total em centavos. Agrupe pelo alias faixa_valor; MIN(total_centavos) ordena as faixas.",
+      "explanation": "CASE testa os limites em sequência e atribui uma faixa a cada venda concluída. GROUP BY usa essa classificação para contar as compras e somar sua receita, sem precisar criar uma coluna permanente no banco. ORDER BY MIN(total_centavos) coloca as faixas do menor para o maior valor, ajudando a observar a distribuição do tamanho das compras.",
+      "concepts": [
+        "CASE",
+        "GROUP BY",
+        "Aliases",
+        "COUNT",
+        "SUM",
+        "Faixas de valor"
+      ],
+      "sql": "SELECT CASE\n           WHEN total_centavos < 5000 THEN 'Ate R$ 49,99'\n           WHEN total_centavos < 15000 THEN 'De R$ 50 a R$ 149,99'\n           ELSE 'A partir de R$ 150'\n       END AS faixa_valor,\n       COUNT(*) AS quantidade_vendas,\n       SUM(total_centavos) / 100.0 AS receita_reais\nFROM vw_vendas_resumo\nWHERE status = 'CONCLUIDA'\nGROUP BY faixa_valor\nORDER BY MIN(total_centavos);",
+      "expected_rows": 3,
+      "preview": {
+        "columns": [
+          "faixa_valor",
+          "quantidade_vendas",
+          "receita_reais"
+        ],
+        "rows": [
+          [
+            "Ate R$ 49,99",
+            111,
+            3895.12
+          ],
+          [
+            "De R$ 50 a R$ 149,99",
+            638,
+            64007.32
+          ],
+          [
+            "A partir de R$ 150",
+            700,
+            161246.08
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E23",
+      "title": "Organizar o resumo mensal com uma CTE",
+      "level": "avancado",
+      "question": "Para cada mês de janeiro a setembro de 2026, calcule a quantidade de vendas concluídas, a receita e o ticket médio em reais. Ordene cronologicamente.",
+      "hint": "WITH nomeia um resumo intermediário. strftime('%Y-%m', data_venda) extrai o mês para agrupar.",
+      "explanation": "A CTE resumo_mensal filtra o período e as vendas concluídas, agrupa pelo mês e calcula quantidade e receita em centavos. A consulta externa reutiliza esse resumo para converter a receita em reais e dividir pela quantidade de vendas, obtendo o ticket médio. Separar as etapas deixa explícito o que é o movimento mensal e o que é a apresentação dos indicadores do mercado.",
+      "concepts": [
+        "WITH",
+        "CTE",
+        "strftime",
+        "GROUP BY",
+        "Ticket médio",
+        "Resumo mensal"
+      ],
+      "sql": "WITH resumo_mensal AS (\n    SELECT strftime('%Y-%m', data_venda) AS mes,\n           COUNT(*) AS quantidade_vendas,\n           SUM(total_centavos) AS receita_centavos\n    FROM vw_vendas_resumo\n    WHERE status = 'CONCLUIDA'\n      AND data_venda >= '2026-01-01'\n      AND data_venda < '2026-10-01'\n    GROUP BY strftime('%Y-%m', data_venda)\n)\nSELECT mes, quantidade_vendas, receita_centavos / 100.0 AS receita_reais,\n       ROUND(receita_centavos / 100.0 / quantidade_vendas, 2) AS ticket_medio_reais\nFROM resumo_mensal\nORDER BY mes;",
+      "expected_rows": 9,
+      "preview": {
+        "columns": [
+          "mes",
+          "quantidade_vendas",
+          "receita_reais",
+          "ticket_medio_reais"
+        ],
+        "rows": [
+          [
+            "2026-01",
+            173,
+            28131.3,
+            162.61
+          ],
+          [
+            "2026-02",
+            163,
+            24791.06,
+            152.09
+          ],
+          [
+            "2026-03",
+            168,
+            27111.5,
+            161.38
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E24",
+      "title": "Listar produtos que precisam de reposição",
+      "level": "intermediario",
+      "question": "No retrato de 30/09/2026, liste os produtos abaixo do estoque mínimo, com loja, produto, unidade, quantidade atual, quantidade mínima e quantidade a repor. Ordene por loja, produto e produto_id.",
+      "hint": "Use vw_estoque_detalhado, filtre a data_referencia e precisa_repor = 1 e calcule a diferença para o mínimo.",
+      "explanation": "A view de estoque já reúne os nomes da loja e do produto e calcula o indicador precisa_repor. WHERE seleciona somente o retrato de 30/09/2026 e os saldos inferiores ao mínimo definido. A subtração quantidade_minima - quantidade_atual informa quanto falta para atingir esse mínimo em cada loja, preservando a unidade de medida de cada produto.",
+      "concepts": [
+        "Views",
+        "WHERE",
+        "Coluna calculada",
+        "Estoque mínimo",
+        "UN e KG",
+        "Data de referência"
+      ],
+      "sql": "SELECT loja, produto, unidade, quantidade_atual, quantidade_minima,\n       ROUND(quantidade_minima - quantidade_atual, 3) AS quantidade_para_repor\nFROM vw_estoque_detalhado\nWHERE data_referencia = '2026-09-30'\n  AND precisa_repor = 1\nORDER BY loja, produto, produto_id;",
+      "expected_rows": 33,
+      "preview": {
+        "columns": [
+          "loja",
+          "produto",
+          "unidade",
+          "quantidade_atual",
+          "quantidade_minima",
+          "quantidade_para_repor"
+        ],
+        "rows": [
+          [
+            "Bom Bairro - Centro",
+            "Acai congelado 1 L",
+            "UN",
+            0.0,
+            8.0,
+            8.0
+          ],
+          [
+            "Bom Bairro - Centro",
+            "Batata congelada 1 kg",
+            "UN",
+            0.0,
+            8.0,
+            8.0
+          ],
+          [
+            "Bom Bairro - Centro",
+            "Gelatina morango 20 g",
+            "UN",
+            7.0,
+            8.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E25",
+      "title": "Calcular margem bruta por categoria",
+      "level": "intermediario",
+      "question": "Para cada categoria com vendas concluídas, mostre receita líquida, custo dos produtos vendidos, margem bruta em reais e margem percentual com duas casas. Ordene pela maior margem em reais e depois pela categoria.",
+      "hint": "Use total_centavos e custo_total_centavos de vw_itens_venda. A margem percentual divide receita menos custo pela receita.",
+      "explanation": "A consulta usa os totais líquidos e os custos históricos registrados nos itens, excluindo as vendas canceladas. GROUP BY categoria soma receita e custo de todos os seus produtos; a diferença dá a margem bruta em reais, e sua divisão pela receita dá o percentual. Essa margem ajuda a comparar setores do mercado, mas ainda não desconta salários, aluguel e outras despesas operacionais.",
+      "concepts": [
+        "INNER JOIN",
+        "GROUP BY",
+        "SUM",
+        "NULLIF",
+        "Margem bruta",
+        "Custo histórico"
+      ],
+      "sql": "SELECT c.nome AS categoria,\n       SUM(i.total_centavos) / 100.0 AS receita_reais,\n       SUM(i.custo_total_centavos) / 100.0 AS custo_reais,\n       SUM(i.total_centavos - i.custo_total_centavos) / 100.0 AS margem_bruta_reais,\n       ROUND(100.0 * SUM(i.total_centavos - i.custo_total_centavos)\n             / NULLIF(SUM(i.total_centavos), 0), 2) AS margem_bruta_percentual\nFROM vw_itens_venda AS i\nINNER JOIN categorias AS c ON c.id = i.categoria_id\nWHERE i.status = 'CONCLUIDA'\nGROUP BY c.id, c.nome\nORDER BY SUM(i.total_centavos - i.custo_total_centavos) DESC, c.nome;",
+      "expected_rows": 12,
+      "preview": {
+        "columns": [
+          "categoria",
+          "receita_reais",
+          "custo_reais",
+          "margem_bruta_reais",
+          "margem_bruta_percentual"
+        ],
+        "rows": [
+          [
+            "Acougue",
+            42652.65,
+            29982.68,
+            12669.97,
+            29.71
+          ],
+          [
+            "Congelados",
+            28613.62,
+            19506.51,
+            9107.11,
+            31.83
+          ],
+          [
+            "Pet shop",
+            27079.5,
+            18288.3,
+            8791.2,
+            32.46
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E26",
+      "title": "Criar um ranking dentro de cada categoria",
+      "level": "avancado",
+      "question": "Mostre os produtos nas três primeiras posições de receita líquida de cada categoria, considerando vendas concluídas. Inclua categoria, produto, receita em reais e posição; empates compartilham a posição e não pulam a seguinte. Ordene por categoria, posição e id.",
+      "hint": "Agregue por produto, aplique DENSE_RANK com PARTITION BY categoria_id e filtre a posição em uma consulta externa.",
+      "explanation": "A primeira CTE calcula a receita de cada produto, e a segunda aplica DENSE_RANK dentro de cada categoria com receita decrescente. PARTITION BY reinicia a classificação em cada setor; DENSE_RANK dá a mesma posição aos empatados e segue sem saltos. O filtro externo mantém posições de 1 a 3, podendo retornar mais de três produtos em uma categoria quando houver empate.",
+      "concepts": [
+        "CTE",
+        "Funções de janela",
+        "DENSE_RANK",
+        "PARTITION BY",
+        "Top N por grupo",
+        "Empates"
+      ],
+      "sql": "WITH receita_produto AS (\n    SELECT categoria_id, produto_id, produto,\n           SUM(total_centavos) AS receita_centavos\n    FROM vw_itens_venda\n    WHERE status = 'CONCLUIDA'\n    GROUP BY categoria_id, produto_id, produto\n), ranking AS (\n    SELECT categoria_id, produto_id, produto, receita_centavos,\n           DENSE_RANK() OVER (\n               PARTITION BY categoria_id\n               ORDER BY receita_centavos DESC\n           ) AS posicao\n    FROM receita_produto\n)\nSELECT c.nome AS categoria, r.produto,\n       r.receita_centavos / 100.0 AS receita_reais, r.posicao\nFROM ranking AS r\nINNER JOIN categorias AS c ON c.id = r.categoria_id\nWHERE r.posicao <= 3\nORDER BY c.nome, r.posicao, r.produto_id;",
+      "expected_rows": 36,
+      "preview": {
+        "columns": [
+          "categoria",
+          "produto",
+          "receita_reais",
+          "posicao"
+        ],
+        "rows": [
+          [
+            "Acougue",
+            "Alcatra bovina",
+            7098.44,
+            1
+          ],
+          [
+            "Acougue",
+            "File de tilapia",
+            6218.11,
+            2
+          ],
+          [
+            "Acougue",
+            "Patinho bovino",
+            6164.08,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E27",
+      "title": "Comparar meses com LAG",
+      "level": "avancado",
+      "question": "Para cada loja e mês com vendas concluídas de janeiro a setembro de 2026, mostre receita, receita do mês anterior disponível e variação em reais. No primeiro mês da loja, mantenha os dois últimos valores NULL. Ordene por loja e mês.",
+      "hint": "Agregue primeiro por loja e mês. Depois use LAG(receita_centavos) OVER (PARTITION BY loja_id ORDER BY mes).",
+      "explanation": "A primeira CTE transforma as vendas em uma série mensal por loja. LAG consulta a linha anterior dessa série dentro da mesma loja, permitindo calcular a diferença entre os dois faturamentos sem fazer outro JOIN. O primeiro mês fica sem referência e mantém NULL; se houvesse um mês sem movimento, LAG compararia com o mês anterior disponível na série.",
+      "concepts": [
+        "CTE",
+        "Funções de janela",
+        "LAG",
+        "PARTITION BY",
+        "Série temporal",
+        "Variação mensal"
+      ],
+      "sql": "WITH receita_mensal AS (\n    SELECT loja_id, strftime('%Y-%m', data_venda) AS mes,\n           SUM(total_centavos) AS receita_centavos\n    FROM vw_vendas_resumo\n    WHERE status = 'CONCLUIDA'\n      AND data_venda >= '2026-01-01'\n      AND data_venda < '2026-10-01'\n    GROUP BY loja_id, strftime('%Y-%m', data_venda)\n), comparacao AS (\n    SELECT loja_id, mes, receita_centavos,\n           LAG(receita_centavos) OVER (\n               PARTITION BY loja_id ORDER BY mes\n           ) AS receita_anterior_centavos\n    FROM receita_mensal\n)\nSELECT l.nome AS loja, c.mes, c.receita_centavos / 100.0 AS receita_reais,\n       c.receita_anterior_centavos / 100.0 AS receita_anterior_reais,\n       (c.receita_centavos - c.receita_anterior_centavos) / 100.0 AS variacao_reais\nFROM comparacao AS c\nINNER JOIN lojas AS l ON l.id = c.loja_id\nORDER BY l.nome, c.mes;",
+      "expected_rows": 27,
+      "preview": {
+        "columns": [
+          "loja",
+          "mes",
+          "receita_reais",
+          "receita_anterior_reais",
+          "variacao_reais"
+        ],
+        "rows": [
+          [
+            "Bom Bairro - Centro",
+            "2026-01",
+            12066.46,
+            null,
+            null
+          ],
+          [
+            "Bom Bairro - Centro",
+            "2026-02",
+            13736.02,
+            12066.46,
+            1669.56
+          ],
+          [
+            "Bom Bairro - Centro",
+            "2026-03",
+            13932.77,
+            13736.02,
+            196.75
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E28",
+      "title": "Acompanhar a receita acumulada",
+      "level": "avancado",
+      "question": "Para cada loja e mês com vendas concluídas de janeiro a setembro de 2026, mostre receita mensal e receita acumulada desde janeiro, em reais. Ordene por loja e mês.",
+      "hint": "Sobre o resumo mensal, aplique SUM(...) OVER com PARTITION BY loja, ORDER BY mes e ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW.",
+      "explanation": "A CTE calcula uma linha de receita para cada par loja e mês. SUM como função de janela soma desde a primeira linha da loja até a linha do mês atual, conforme a moldura ROWS definida. Diferentemente de um novo GROUP BY, essa soma preserva cada mês no resultado e permite acompanhar a evolução do acumulado de cada filial.",
+      "concepts": [
+        "CTE",
+        "Funções de janela",
+        "SUM OVER",
+        "ROWS",
+        "PARTITION BY",
+        "Acumulado"
+      ],
+      "sql": "WITH receita_mensal AS (\n    SELECT loja_id, strftime('%Y-%m', data_venda) AS mes,\n           SUM(total_centavos) AS receita_centavos\n    FROM vw_vendas_resumo\n    WHERE status = 'CONCLUIDA'\n      AND data_venda >= '2026-01-01'\n      AND data_venda < '2026-10-01'\n    GROUP BY loja_id, strftime('%Y-%m', data_venda)\n)\nSELECT l.nome AS loja, r.mes, r.receita_centavos / 100.0 AS receita_reais,\n       SUM(r.receita_centavos) OVER (\n           PARTITION BY r.loja_id\n           ORDER BY r.mes\n           ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n       ) / 100.0 AS receita_acumulada_reais\nFROM receita_mensal AS r\nINNER JOIN lojas AS l ON l.id = r.loja_id\nORDER BY l.nome, r.mes;",
+      "expected_rows": 27,
+      "preview": {
+        "columns": [
+          "loja",
+          "mes",
+          "receita_reais",
+          "receita_acumulada_reais"
+        ],
+        "rows": [
+          [
+            "Bom Bairro - Centro",
+            "2026-01",
+            12066.46,
+            12066.46
+          ],
+          [
+            "Bom Bairro - Centro",
+            "2026-02",
+            13736.02,
+            25802.48
+          ],
+          [
+            "Bom Bairro - Centro",
+            "2026-03",
+            13932.77,
+            39735.25
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E29",
+      "title": "Medir recência, frequência e valor",
+      "level": "avancado",
+      "question": "Para todos os clientes, mostre id, nome, data da última venda concluída, dias até 30/09/2026, quantidade de vendas e gasto total de janeiro a setembro de 2026. Quem não comprou deve ter quantidade e gasto zero, data e dias NULL. Ordene pelo gasto decrescente e pelo id.",
+      "hint": "Resuma as vendas em uma CTE e faça LEFT JOIN com clientes. Use julianday e date para calcular os dias e COALESCE apenas nas medidas que devem valer zero.",
+      "explanation": "A CTE calcula, para cada cliente identificado, a última compra concluída, sua frequência de compras e o gasto no período. O LEFT JOIN mantém todo o cadastro, inclusive os clientes sem movimento, e COALESCE converte apenas contagem e gasto ausentes para zero. A diferença entre julianday da referência fixa e da data da última compra mede a recência em dias, sem mudar quando você estudar em outra data.",
+      "concepts": [
+        "CTE",
+        "LEFT JOIN",
+        "MAX",
+        "COALESCE",
+        "julianday",
+        "Recência, frequência e valor"
+      ],
+      "sql": "WITH resumo_cliente AS (\n    SELECT cliente_id, MAX(data_venda) AS ultima_venda,\n           COUNT(*) AS quantidade_vendas,\n           SUM(total_centavos) AS gasto_centavos\n    FROM vw_vendas_resumo\n    WHERE status = 'CONCLUIDA'\n      AND data_venda >= '2026-01-01'\n      AND data_venda < '2026-10-01'\n      AND cliente_id IS NOT NULL\n    GROUP BY cliente_id\n)\nSELECT c.id, c.nome, date(r.ultima_venda) AS data_ultima_venda,\n       CAST(julianday('2026-09-30') - julianday(date(r.ultima_venda)) AS INTEGER)\n           AS dias_desde_ultima_venda,\n       COALESCE(r.quantidade_vendas, 0) AS quantidade_vendas,\n       COALESCE(r.gasto_centavos, 0) / 100.0 AS gasto_total_reais\nFROM clientes AS c\nLEFT JOIN resumo_cliente AS r ON r.cliente_id = c.id\nORDER BY COALESCE(r.gasto_centavos, 0) DESC, c.id;",
+      "expected_rows": 450,
+      "preview": {
+        "columns": [
+          "id",
+          "nome",
+          "data_ultima_venda",
+          "dias_desde_ultima_venda",
+          "quantidade_vendas",
+          "gasto_total_reais"
+        ],
+        "rows": [
+          [
+            175,
+            "Laura Costa (F175)",
+            "2026-08-11",
+            50,
+            8,
+            1583.63
+          ],
+          [
+            307,
+            "Gabriela Martins (F307)",
+            "2026-09-22",
+            8,
+            8,
+            1569.68
+          ],
+          [
+            313,
+            "Mariana Martins (F313)",
+            "2026-09-30",
+            0,
+            7,
+            1505.8
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E30",
+      "title": "Combinar contagens e prazo dos fornecedores",
+      "level": "avancado",
+      "question": "Para todos os fornecedores, mostre id, nome, quantidade de pedidos recebidos, pendentes e cancelados e prazo médio real de recebimento em dias, com duas casas. Sem recebimentos, o prazo médio deve ser NULL. Ordene por id.",
+      "hint": "LEFT JOIN preserva fornecedores sem pedidos; SUM(CASE ...) conta cada status, e AVG(CASE ...) considera apenas recebimentos.",
+      "explanation": "LEFT JOIN mantém cada fornecedor, mesmo sem pedido associado, enquanto as expressões SUM(CASE ...) distribuem os pedidos por situação. Para calcular o prazo real, CASE entrega a diferença entre recebimento e pedido somente nas compras RECEBIDA, retornando NULL nos demais casos. Como AVG ignora NULL, o prazo médio considera apenas entregas realizadas, sem tratar pedidos pendentes como entregas de prazo zero.",
+      "concepts": [
+        "LEFT JOIN",
+        "CASE",
+        "Agregação condicional",
+        "AVG",
+        "julianday",
+        "Prazo de entrega"
+      ],
+      "sql": "SELECT f.id, f.nome,\n       SUM(CASE WHEN c.status = 'RECEBIDA' THEN 1 ELSE 0 END) AS pedidos_recebidos,\n       SUM(CASE WHEN c.status = 'PENDENTE' THEN 1 ELSE 0 END) AS pedidos_pendentes,\n       SUM(CASE WHEN c.status = 'CANCELADA' THEN 1 ELSE 0 END) AS pedidos_cancelados,\n       ROUND(AVG(CASE WHEN c.status = 'RECEBIDA'\n                      THEN julianday(c.data_recebimento) - julianday(c.data_pedido)\n                 END), 2) AS prazo_medio_real_dias\nFROM fornecedores AS f\nLEFT JOIN compras AS c ON c.fornecedor_id = f.id\nGROUP BY f.id, f.nome\nORDER BY f.id;",
+      "expected_rows": 20,
+      "preview": {
+        "columns": [
+          "id",
+          "nome",
+          "pedidos_recebidos",
+          "pedidos_pendentes",
+          "pedidos_cancelados",
+          "prazo_medio_real_dias"
+        ],
+        "rows": [
+          [
+            1,
+            "Distribuidora Ficticia 01",
+            8,
+            0,
+            1,
+            2.0
+          ],
+          [
+            2,
+            "Distribuidora Ficticia 02",
+            9,
+            0,
+            0,
+            3.0
+          ],
+          [
+            3,
+            "Distribuidora Ficticia 03",
+            8,
+            0,
+            1,
+            4.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "E31",
+      "title": "Conferir o saldo do estoque",
+      "level": "avancado",
+      "question": "Confira o estoque de 30/09/2026 por loja e produto: saldo inicial + compras recebidas − vendas concluídas de 01/01/2026 até antes de 01/10/2026 deve coincidir com o saldo registrado. Retorne somente diferenças maiores que 0,000001, com loja, produto, unidade, saldo calculado, saldo registrado e diferença (registrado − calculado). Ordene por loja e produto.",
+      "hint": "Agregue entradas e saídas separadamente por loja/produto antes dos JOINs. A data da entrada é data_recebimento; use COALESCE para movimentos ausentes.",
+      "explanation": "As duas primeiras CTEs somam entradas recebidas e saídas concluídas separadamente, evitando que várias compras se multipliquem por várias vendas do mesmo produto. A terceira combina esses movimentos com o saldo inicial de cada loja e produto, usando zero quando não há entrada ou saída. A consulta final exibe somente diferenças acima da tolerância para números REAL; no banco original, nenhuma linha significa que o saldo registrado confere com os movimentos.",
+      "concepts": [
+        "CTEs",
+        "Pré-agregação",
+        "LEFT JOIN",
+        "COALESCE",
+        "Reconciliação de estoque",
+        "Tolerância numérica"
+      ],
+      "sql": "WITH entradas AS (\n    SELECT c.loja_id, i.produto_id, SUM(i.quantidade) AS quantidade_recebida\n    FROM itens_compra AS i\n    INNER JOIN compras AS c ON c.id = i.compra_id\n    WHERE c.status = 'RECEBIDA'\n      AND c.data_recebimento >= '2026-01-01'\n      AND c.data_recebimento < '2026-10-01'\n    GROUP BY c.loja_id, i.produto_id\n), saidas AS (\n    SELECT v.loja_id, i.produto_id, SUM(i.quantidade) AS quantidade_vendida\n    FROM itens_venda AS i\n    INNER JOIN vendas AS v ON v.id = i.venda_id\n    WHERE v.status = 'CONCLUIDA'\n      AND v.data_venda >= '2026-01-01'\n      AND v.data_venda < '2026-10-01'\n    GROUP BY v.loja_id, i.produto_id\n), conferencia AS (\n    SELECT e.loja_id, e.produto_id, e.quantidade_atual,\n           e.quantidade_inicial + COALESCE(en.quantidade_recebida, 0)\n               - COALESCE(s.quantidade_vendida, 0) AS saldo_calculado\n    FROM estoques AS e\n    LEFT JOIN entradas AS en ON en.loja_id = e.loja_id AND en.produto_id = e.produto_id\n    LEFT JOIN saidas AS s ON s.loja_id = e.loja_id AND s.produto_id = e.produto_id\n    WHERE e.data_referencia = '2026-09-30'\n)\nSELECT l.nome AS loja, p.nome AS produto, p.unidade,\n       ROUND(c.saldo_calculado, 6) AS saldo_calculado,\n       c.quantidade_atual AS saldo_registrado,\n       ROUND(c.quantidade_atual - c.saldo_calculado, 6) AS diferenca\nFROM conferencia AS c\nINNER JOIN lojas AS l ON l.id = c.loja_id\nINNER JOIN produtos AS p ON p.id = c.produto_id\nWHERE ABS(c.quantidade_atual - c.saldo_calculado) > 0.000001\nORDER BY l.nome, p.nome, p.id;",
+      "expected_rows": 0,
+      "preview": {
+        "columns": [
+          "loja",
+          "produto",
+          "unidade",
+          "saldo_calculado",
+          "saldo_registrado",
+          "diferenca"
+        ],
+        "rows": []
+      }
+    },
+    {
+      "id": "E32",
+      "title": "Reconciliar vendas e pagamentos",
+      "level": "avancado",
+      "question": "Confira todas as vendas: nas concluídas, a soma dos pagamentos deve ser igual ao total líquido; nas canceladas, deve ser zero. Retorne somente divergências, com id, status, quantidade de pagamentos, valor esperado, valor pago e diferença (pago − esperado) em reais, em ordem de id.",
+      "hint": "Agrupe pagamentos por venda antes do JOIN. CASE determina o valor esperado, COALESCE trata pagamentos ausentes e a comparação deve usar centavos inteiros.",
+      "explanation": "A primeira CTE reduz os pagamentos a uma linha por venda com sua quantidade e soma, e o LEFT JOIN preserva até vendas sem pagamento. CASE define como esperado o total líquido de uma venda concluída ou zero de uma cancelada; COALESCE representa a ausência de pagamentos como zero. O WHERE compara centavos inteiros antes da conversão para reais, e só mostra problemas; no banco original, o resultado vazio confirma que todos os valores conferem.",
+      "concepts": [
+        "CTEs",
+        "Pré-agregação",
+        "LEFT JOIN",
+        "CASE",
+        "Centavos inteiros",
+        "Reconciliação de pagamentos"
+      ],
+      "sql": "WITH pagamentos_por_venda AS (\n    SELECT venda_id, COUNT(*) AS quantidade_pagamentos,\n           SUM(valor_centavos) AS valor_pago_centavos\n    FROM pagamentos\n    GROUP BY venda_id\n), conferencia AS (\n    SELECT v.venda_id, v.status,\n           COALESCE(p.quantidade_pagamentos, 0) AS quantidade_pagamentos,\n           CASE WHEN v.status = 'CONCLUIDA' THEN v.total_centavos ELSE 0 END\n               AS valor_esperado_centavos,\n           COALESCE(p.valor_pago_centavos, 0) AS valor_pago_centavos\n    FROM vw_vendas_resumo AS v\n    LEFT JOIN pagamentos_por_venda AS p ON p.venda_id = v.venda_id\n)\nSELECT venda_id, status, quantidade_pagamentos,\n       valor_esperado_centavos / 100.0 AS valor_esperado_reais,\n       valor_pago_centavos / 100.0 AS valor_pago_reais,\n       (valor_pago_centavos - valor_esperado_centavos) / 100.0 AS diferenca_reais\nFROM conferencia\nWHERE valor_pago_centavos <> valor_esperado_centavos\nORDER BY venda_id;",
+      "expected_rows": 0,
+      "preview": {
+        "columns": [
+          "venda_id",
+          "status",
+          "quantidade_pagamentos",
+          "valor_esperado_reais",
+          "valor_pago_reais",
+          "diferenca_reais"
+        ],
+        "rows": []
+      }
+    }
+  ]
+}

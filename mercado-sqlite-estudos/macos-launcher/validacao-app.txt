@@ -1,0 +1,11 @@
+MERCADO SQL MACOS — GUIA COM 3 ABAS
+
+App universal Intel/Apple Silicon, versão 1.1.0.
+ZIP íntegro e extraído em caminho com espaço e acento.
+Assinatura ad-hoc verificada após extração.
+14 recursos idênticos ao kit atual.
+Inicialização relativa ao bundle, independente da workspace e do diretório de trabalho.
+Abertura configurada para a aba #exercicios.
+Guia com 3 abas aprovado em 57 verificações no navegador.
+ZIP: 885075 bytes.
+SHA-256 ZIP: 6371ec264473122a13383eacec2fa477bdbbf6fac58d39e845e83ef36dccf4bd

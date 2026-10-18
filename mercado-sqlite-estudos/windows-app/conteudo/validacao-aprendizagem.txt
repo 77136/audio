@@ -1,0 +1,15 @@
+MERCADO BOM BAIRRO — ABA APRENDIZAGEM
+
+32 lições: 7 iniciantes, 14 intermediárias e 11 avançadas.
+SQL, resultados, colunas, ordem, contagens e primeiras três linhas conferidos contra o gabarito e a base original em modo somente leitura.
+E31 e E32 retornam zero inconsistências.
+
+Revisão estática: IDs únicos; referências e âncoras locais existentes; 32 consultas e 32 botões de cópia; JSON embutido idêntico ao arquivo fonte; sem dependências de rede; JavaScript com sintaxe válida.
+
+Navegador real: Chrome isolado, abrindo o guia por file://.
+19 verificações de navegação e cópia aprovadas em 1440 px.
+As mesmas 19 verificações aprovadas em 390 px.
+7 verificações adicionais aprovadas: fallback de cópia, execCommand nativo, preservação do SQL, restauração de foco, seleção manual e aviso quando a cópia é bloqueada.
+Nenhum overflow horizontal do documento nas duas larguras.
+
+Banco e arquivos SQL originais mantiveram seus hashes SHA-256.

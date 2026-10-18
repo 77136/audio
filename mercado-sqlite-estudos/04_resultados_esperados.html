@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light"><title>Resultados esperados · Mercado Bom Bairro</title>
+<style>
+:root{--ink:#183038;--muted:#52666a;--paper:#f6f5ee;--line:#d9e2dc;--green:#176953;--mint:#e6f2e8;--navy:#132e36;--orange:#f6c06a}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}header{background:var(--navy);color:#f9faf2;padding:46px 0 38px}.eyebrow{color:#f6d399;font-size:.77rem;font-weight:750;letter-spacing:.15em;text-transform:uppercase}h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;letter-spacing:-.035em;margin:15px 0 20px}header p{max-width:820px;color:#d0e0d7;margin-bottom:0}a{color:var(--green);text-underline-offset:3px}header a{display:inline-block;color:#f6d399;margin-top:22px}a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #c4841b;outline-offset:4px}main{padding-bottom:30px}.intro{margin:28px 0;padding:18px 22px;background:var(--mint);border-left:4px solid var(--green);border-radius:0 12px 12px 0}.intro p{margin:0}.intro code{background:#f7fbf5;padding:1px 5px;border-radius:4px}nav{padding:6px 0 28px;display:grid;grid-template-columns:repeat(16,1fr);gap:7px}nav a{display:block;text-align:center;padding:7px 4px;background:#fff;border:1px solid var(--line);border-radius:7px;font-size:.78rem;font-weight:750;text-decoration:none}nav a:hover{background:var(--mint)}.exercise{padding:28px;background:white;border:1px solid var(--line);border-radius:16px;margin-bottom:22px;min-width:0}.exercise-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.id{font-size:.78rem;letter-spacing:.06em;font-weight:800;background:var(--mint);color:var(--green);padding:4px 9px;border-radius:6px}.count{font-size:.78rem;color:var(--muted)}h2{font-size:1.45rem;line-height:1.25;letter-spacing:-.02em;margin:17px 0 12px}.question{font-size:.94rem;color:var(--muted);max-width:970px;margin:0 0 18px}.preview{font-size:.81rem;font-weight:700;margin:0 0 12px;color:var(--green)}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:10px;max-width:100%}table{border-collapse:collapse;width:100%;text-align:left;font-size:.82rem;line-height:1.45}th,td{padding:11px 13px;border-bottom:1px solid #e6ebe5;vertical-align:top}th{background:#edf2ec;color:#27483f;white-space:nowrap}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#fafbf8}.number{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.null span{display:inline-block;padding:1px 6px;font:700 .72rem ui-monospace,monospace;letter-spacing:.04em;border:1px dashed #89979a;background:#f0f2f2;color:#566469;border-radius:4px}.empty{padding:18px 20px;background:var(--mint);border-radius:10px;font-size:.93rem;color:var(--green);margin:0}details{margin-top:20px;border-top:1px solid var(--line);padding-top:15px}summary{font-size:.85rem;font-weight:700;cursor:pointer}pre{background:#102830;color:#e7f6ee;padding:18px;border-radius:10px;overflow:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;margin:14px 0 0}.top-link{display:inline-block;font-size:.78rem;margin-top:16px}footer{padding:0 0 35px;color:var(--muted);font-size:.8rem}footer p{margin-bottom:8px}@media(max-width:900px){nav{grid-template-columns:repeat(8,1fr)}}@media(max-width:580px){.wrap{width:calc(100% - 28px)}header{padding:30px 0}.exercise{padding:20px 16px}nav{grid-template-columns:repeat(4,1fr)}h2{font-size:1.25rem}th,td{padding:10px}pre{font-size:12px}.intro{padding:16px}table{font-size:.77rem}}@media print{body{background:white;font-size:10pt}header{background:white;color:var(--ink);padding:0}header p{color:var(--muted)}header a,nav,.top-link,details{display:none}.wrap{width:100%}.exercise{border-radius:0;break-inside:avoid;padding:15px;margin-top:15px}.table-scroll{overflow:visible}table{font-size:8pt}th,td{padding:6px}.intro{margin:15px 0}}
+</style></head><body>
+<header><div class="wrap"><div class="eyebrow">Mercado Bom Bairro · laboratório de SQL</div>
+<h1>Confira o que sua consulta devolveu.</h1><p>Resultados das 32 respostas executadas sobre a base original. Compare as colunas, a ordem e a quantidade de linhas com o que apareceu no SQLiteOnline.</p>
+<a href="LEIA-ME.html">← Voltar ao guia de estudo</a></div></header>
+<main class="wrap"><aside class="intro"><p><strong>Como conferir:</strong> até 10 linhas, o resultado está completo. Acima disso, mostramos uma prévia das primeiras 10 e informamos o total. <code>NULL</code> indica ausência de valor. Valores em colunas com “reais” têm duas casas decimais. E31 e E32 devem retornar zero linhas.</p></aside>
+<nav id="indice" aria-label="Escolher exercício"><a href="#E01" title="Primeira consulta.">E01</a><a href="#E02" title="Filtros combinados.">E02</a><a href="#E03" title="Busca parcial de texto.">E03</a><a href="#E04" title="Informacao ausente.">E04</a><a href="#E05" title="Ordenacao e limite.">E05</a><a href="#E06" title="Intervalo de datas.">E06</a><a href="#E07" title="Resumo do cadastro.">E07</a><a href="#E08" title="Agrupamento e filtro de grupos.">E08</a><a href="#E09" title="Relacionamentos obrigatorios.">E09</a><a href="#E10" title="Relacionamento opcional.">E10</a><a href="#E11" title="Clientes sem compras usando LEFT JOIN.">E11</a><a href="#E12" title="Relacionamento muitos para muitos.">E12</a><a href="#E13" title="Faturamento e ticket medio por loja.">E13</a><a href="#E14" title="Clientes com maior gasto.">E14</a><a href="#E15" title="Produtos com maior receita.">E15</a><a href="#E16" title="Descontos por canal.">E16</a><a href="#E17" title="Uma venda, varios pagamentos.">E17</a><a href="#E18" title="Receita recebida por forma de pagamento.">E18</a><a href="#E19" title="Produtos nunca vendidos usando NOT EXISTS.">E19</a><a href="#E20" title="Clientes de mais de um canal usando EXISTS.">E20</a><a href="#E21" title="Comparacao com a media da propria categoria.">E21</a><a href="#E22" title="Classificacao com CASE.">E22</a><a href="#E23" title="Primeira CTE.">E23</a><a href="#E24" title="Necessidade de reposicao.">E24</a><a href="#E25" title="Margem bruta por categoria.">E25</a><a href="#E26" title="Ranking dentro de cada categoria.">E26</a><a href="#E27" title="Comparacao com o mes anterior.">E27</a><a href="#E28" title="Receita acumulada.">E28</a><a href="#E29" title="Recencia, frequencia e valor dos clientes.">E29</a><a href="#E30" title="Desempenho dos fornecedores.">E30</a><a href="#E31" title="Conferencia do estoque.">E31</a><a href="#E32" title="Reconciliacao de pagamentos.">E32</a></nav>
+<article id="E01" class="exercise">
+<div class="exercise-top"><span class="id">E01</span><span class="count">10 linhas no total</span></div>
+<h2>Primeira consulta.</h2><p class="question">Liste id, codigo, nome e preco de venda em reais dos primeiros 10 produtos, em ordem crescente de id.</p>
+<p class="preview">Resultado completo: 10 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E01"><table><thead><tr><th scope="col">id</th><th scope="col">codigo</th><th scope="col">nome</th><th scope="col">preco_reais</th></tr></thead><tbody><tr><td class="number">1</td><td>MER-0001</td><td>Arroz branco 5 kg</td><td class="number">25.90</td></tr><tr><td class="number">2</td><td>MER-0002</td><td>Feijao carioca 1 kg</td><td class="number">7.99</td></tr><tr><td class="number">3</td><td>MER-0003</td><td>Acucar cristal 1 kg</td><td class="number">4.59</td></tr><tr><td class="number">4</td><td>MER-0004</td><td>Farinha de trigo 1 kg</td><td class="number">5.49</td></tr><tr><td class="number">5</td><td>MER-0005</td><td>Macarrao espaguete 500 g</td><td class="number">4.79</td></tr><tr><td class="number">6</td><td>MER-0006</td><td>Oleo de soja 900 ml</td><td class="number">7.99</td></tr><tr><td class="number">7</td><td>MER-0007</td><td>Sal refinado 1 kg</td><td class="number">2.49</td></tr><tr><td class="number">8</td><td>MER-0008</td><td>Molho de tomate 300 g</td><td class="number">2.69</td></tr><tr><td class="number">9</td><td>MER-0009</td><td>Cafe torrado 500 g</td><td class="number">21.90</td></tr><tr><td class="number">10</td><td>MER-0010</td><td>Aveia em flocos 170 g</td><td class="number">5.99</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT id, codigo, nome, preco_venda_centavos / 100.0 AS preco_reais
+FROM produtos
+ORDER BY id
+LIMIT 10;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E02" class="exercise">
+<div class="exercise-top"><span class="id">E02</span><span class="count">34 linhas no total</span></div>
+<h2>Filtros combinados.</h2><p class="question">Liste os produtos ativos cujo preco de venda esteja entre R$ 10 e R$ 25, incluindo os dois limites. Mostre id, nome, unidade e preco em reais. Ordene do menor para o maior preco, usando id para desempatar.</p>
+<p class="preview">Prévia: primeiras 10 de 34 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E02"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th><th scope="col">unidade</th><th scope="col">preco_reais</th></tr></thead><tbody><tr><td class="number">43</td><td>Pao integral 450 g</td><td>UN</td><td class="number">10.90</td></tr><tr><td class="number">56</td><td>Suco de laranja 1 L</td><td>UN</td><td class="number">10.90</td></tr><tr><td class="number">12</td><td>Maca gala</td><td>KG</td><td class="number">11.90</td></tr><tr><td class="number">34</td><td>Manteiga 200 g</td><td>UN</td><td class="number">11.90</td></tr><tr><td class="number">55</td><td>Suco de uva 1 L</td><td>UN</td><td class="number">11.90</td></tr><tr><td class="number">62</td><td>Sabao em po 800 g</td><td>UN</td><td class="number">11.90</td></tr><tr><td class="number">77</td><td>Desodorante 150 ml</td><td>UN</td><td class="number">11.90</td></tr><tr><td class="number">99</td><td>Doce de leite 400 g</td><td>UN</td><td class="number">11.90</td></tr><tr><td class="number">24</td><td>Coxa de frango</td><td>KG</td><td class="number">12.90</td></tr><tr><td class="number">72</td><td>Shampoo 350 ml</td><td>UN</td><td class="number">12.90</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT id, nome, unidade, preco_venda_centavos / 100.0 AS preco_reais
+FROM produtos
+WHERE ativo = 1
+  AND preco_venda_centavos BETWEEN 1000 AND 2500
+ORDER BY preco_venda_centavos, id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E03" class="exercise">
+<div class="exercise-top"><span class="id">E03</span><span class="count">1 linha no total</span></div>
+<h2>Busca parcial de texto.</h2><p class="question">Liste id e nome dos produtos cujo nome contenha &#x27;arroz&#x27;, ordenados por nome.</p>
+<p class="preview">Resultado completo: 1 linha.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E03"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th></tr></thead><tbody><tr><td class="number">1</td><td>Arroz branco 5 kg</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT id, nome
+FROM produtos
+WHERE nome LIKE &#x27;%arroz%&#x27;
+ORDER BY nome, id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E04" class="exercise">
+<div class="exercise-top"><span class="id">E04</span><span class="count">56 linhas no total</span></div>
+<h2>Informacao ausente.</h2><p class="question">Liste id, nome e cidade dos clientes sem email, em ordem crescente de id.</p>
+<p class="preview">Prévia: primeiras 10 de 56 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E04"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th><th scope="col">cidade</th></tr></thead><tbody><tr><td class="number">8</td><td>Henrique Silva (F008)</td><td>Valinhos</td></tr><tr><td class="number">16</td><td>Paulo Silva (F016)</td><td>Valinhos</td></tr><tr><td class="number">24</td><td>Felipe Silva (F024)</td><td>Valinhos</td></tr><tr><td class="number">32</td><td>Bruno Souza (F032)</td><td>Valinhos</td></tr><tr><td class="number">40</td><td>Joao Souza (F040)</td><td>Valinhos</td></tr><tr><td class="number">48</td><td>Sofia Souza (F048)</td><td>Valinhos</td></tr><tr><td class="number">56</td><td>Pedro Souza (F056)</td><td>Valinhos</td></tr><tr><td class="number">64</td><td>Diego Oliveira (F064)</td><td>Valinhos</td></tr><tr><td class="number">72</td><td>Lucas Oliveira (F072)</td><td>Valinhos</td></tr><tr><td class="number">80</td><td>Vitoria Oliveira (F080)</td><td>Valinhos</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT id, nome, cidade
+FROM clientes
+WHERE email IS NULL
+ORDER BY id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E05" class="exercise">
+<div class="exercise-top"><span class="id">E05</span><span class="count">5 linhas no total</span></div>
+<h2>Ordenacao e limite.</h2><p class="question">Mostre os 5 produtos mais caros, com nome e preco em reais. Em caso de precos iguais, use o menor id primeiro.</p>
+<p class="preview">Resultado completo: 5 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E05"><table><thead><tr><th scope="col">nome</th><th scope="col">preco_reais</th></tr></thead><tbody><tr><td>Alcatra bovina</td><td class="number">54.90</td></tr><tr><td>File de tilapia</td><td class="number">49.90</td></tr><tr><td>Patinho bovino</td><td class="number">44.90</td></tr><tr><td>Queijo prato</td><td class="number">44.90</td></tr><tr><td>Queijo mussarela</td><td class="number">39.90</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT nome, preco_venda_centavos / 100.0 AS preco_reais
+FROM produtos
+ORDER BY preco_venda_centavos DESC, id
+LIMIT 5;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E06" class="exercise">
+<div class="exercise-top"><span class="id">E06</span><span class="count">173 linhas no total</span></div>
+<h2>Intervalo de datas.</h2><p class="question">Liste id, loja_id, data_venda e canal das vendas concluidas de junho de 2026. Ordene por data_venda e id.</p>
+<p class="preview">Prévia: primeiras 10 de 173 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E06"><table><thead><tr><th scope="col">id</th><th scope="col">loja_id</th><th scope="col">data_venda</th><th scope="col">canal</th></tr></thead><tbody><tr><td class="number">867</td><td class="number">1</td><td>2026-06-01 08:54:29</td><td>LOJA</td></tr><tr><td class="number">868</td><td class="number">2</td><td>2026-06-01 11:31:26</td><td>LOJA</td></tr><tr><td class="number">871</td><td class="number">1</td><td>2026-06-01 13:23:33</td><td>LOJA</td></tr><tr><td class="number">872</td><td class="number">3</td><td>2026-06-01 14:52:01</td><td>LOJA</td></tr><tr><td class="number">866</td><td class="number">2</td><td>2026-06-01 19:30:05</td><td>LOJA</td></tr><tr><td class="number">869</td><td class="number">1</td><td>2026-06-01 19:56:07</td><td>LOJA</td></tr><tr><td class="number">878</td><td class="number">1</td><td>2026-06-02 10:11:52</td><td>LOJA</td></tr><tr><td class="number">877</td><td class="number">3</td><td>2026-06-02 11:32:13</td><td>LOJA</td></tr><tr><td class="number">875</td><td class="number">2</td><td>2026-06-02 12:57:08</td><td>LOJA</td></tr><tr><td class="number">874</td><td class="number">2</td><td>2026-06-02 16:18:04</td><td>LOJA</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT id, loja_id, data_venda, canal
+FROM vendas
+WHERE status = &#x27;CONCLUIDA&#x27;
+  AND data_venda &gt;= &#x27;2026-06-01&#x27;
+  AND data_venda &lt; &#x27;2026-07-01&#x27;
+ORDER BY data_venda, id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E07" class="exercise">
+<div class="exercise-top"><span class="id">E07</span><span class="count">1 linha no total</span></div>
+<h2>Resumo do cadastro.</h2><p class="question">Para os produtos ativos, calcule quantidade de produtos, menor preco, maior preco e preco medio. Exiba os valores monetarios em reais.</p>
+<p class="preview">Resultado completo: 1 linha.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E07"><table><thead><tr><th scope="col">quantidade_produtos</th><th scope="col">menor_preco_reais</th><th scope="col">maior_preco_reais</th><th scope="col">preco_medio_reais</th></tr></thead><tbody><tr><td class="number">118</td><td class="number">1.99</td><td class="number">54.90</td><td class="number">12.04</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT COUNT(*) AS quantidade_produtos,
+       MIN(preco_venda_centavos) / 100.0 AS menor_preco_reais,
+       MAX(preco_venda_centavos) / 100.0 AS maior_preco_reais,
+       ROUND(AVG(preco_venda_centavos) / 100.0, 2) AS preco_medio_reais
+FROM produtos
+WHERE ativo = 1;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E08" class="exercise">
+<div class="exercise-top"><span class="id">E08</span><span class="count">12 linhas no total</span></div>
+<h2>Agrupamento e filtro de grupos.</h2><p class="question">Para cada categoria_id com pelo menos 8 produtos ativos, mostre a quantidade desses produtos e seu preco medio em reais. Ordene por categoria_id.</p>
+<p class="preview">Prévia: primeiras 10 de 12 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E08"><table><thead><tr><th scope="col">categoria_id</th><th scope="col">quantidade_produtos</th><th scope="col">preco_medio_reais</th></tr></thead><tbody><tr><td class="number">1</td><td class="number">10</td><td class="number">8.98</td></tr><tr><td class="number">2</td><td class="number">10</td><td class="number">7.28</td></tr><tr><td class="number">3</td><td class="number">10</td><td class="number">31.60</td></tr><tr><td class="number">4</td><td class="number">10</td><td class="number">13.82</td></tr><tr><td class="number">5</td><td class="number">10</td><td class="number">12.45</td></tr><tr><td class="number">6</td><td class="number">10</td><td class="number">7.87</td></tr><tr><td class="number">7</td><td class="number">10</td><td class="number">7.72</td></tr><tr><td class="number">8</td><td class="number">10</td><td class="number">9.05</td></tr><tr><td class="number">9</td><td class="number">10</td><td class="number">16.87</td></tr><tr><td class="number">10</td><td class="number">10</td><td class="number">6.03</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT categoria_id, COUNT(*) AS quantidade_produtos,
+       ROUND(AVG(preco_venda_centavos) / 100.0, 2) AS preco_medio_reais
+FROM produtos
+WHERE ativo = 1
+GROUP BY categoria_id
+HAVING COUNT(*) &gt;= 8
+ORDER BY categoria_id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E09" class="exercise">
+<div class="exercise-top"><span class="id">E09</span><span class="count">120 linhas no total</span></div>
+<h2>Relacionamentos obrigatorios.</h2><p class="question">Liste id e nome do produto, nome da categoria, nome da marca e preco em reais. Ordene por categoria e produto, usando id para desempatar.</p>
+<p class="preview">Prévia: primeiras 10 de 120 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E09"><table><thead><tr><th scope="col">id</th><th scope="col">produto</th><th scope="col">categoria</th><th scope="col">marca</th><th scope="col">preco_reais</th></tr></thead><tbody><tr><td class="number">22</td><td>Alcatra bovina</td><td>Acougue</td><td>Amigo Bicho</td><td class="number">54.90</td></tr><tr><td class="number">30</td><td>Asa de frango</td><td>Acougue</td><td>Campo Claro</td><td class="number">17.90</td></tr><tr><td class="number">27</td><td>Carne moida bovina</td><td>Acougue</td><td>Cozinha Boa</td><td class="number">34.90</td></tr><tr><td class="number">26</td><td>Costela bovina</td><td>Acougue</td><td>Viva Bem</td><td class="number">32.90</td></tr><tr><td class="number">24</td><td>Coxa de frango</td><td>Acougue</td><td>Pomar Novo</td><td class="number">12.90</td></tr><tr><td class="number">29</td><td>File de tilapia</td><td>Acougue</td><td>Origem do Campo</td><td class="number">49.90</td></tr><tr><td class="number">28</td><td>Linguica toscana</td><td>Acougue</td><td>Sol Nascente</td><td class="number">22.90</td></tr><tr><td class="number">25</td><td>Lombo suino</td><td>Acougue</td><td>Vale Dourado</td><td class="number">24.90</td></tr><tr><td class="number">21</td><td>Patinho bovino</td><td>Acougue</td><td>Doce Quintal</td><td class="number">44.90</td></tr><tr><td class="number">23</td><td>Peito de frango</td><td>Acougue</td><td>Lar Pratico</td><td class="number">19.90</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT p.id, p.nome AS produto, c.nome AS categoria, m.nome AS marca,
+       p.preco_venda_centavos / 100.0 AS preco_reais
+FROM produtos AS p
+INNER JOIN categorias AS c ON c.id = p.categoria_id
+INNER JOIN marcas AS m ON m.id = p.marca_id
+ORDER BY c.nome, p.nome, p.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E10" class="exercise">
+<div class="exercise-top"><span class="id">E10</span><span class="count">20 linhas no total</span></div>
+<h2>Relacionamento opcional.</h2><p class="question">Liste as primeiras 20 vendas concluidas, por id, com loja, data, nome do cliente e total em reais. Quando cliente_id for NULL, exiba &#x27;Nao identificado&#x27;.</p>
+<p class="preview">Prévia: primeiras 10 de 20 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E10"><table><thead><tr><th scope="col">venda_id</th><th scope="col">loja</th><th scope="col">data_venda</th><th scope="col">cliente</th><th scope="col">total_reais</th></tr></thead><tbody><tr><td class="number">1</td><td>Bom Bairro - Vila Verde</td><td>2026-01-01 12:48:59</td><td>Ana Silva (F001)</td><td class="number">181.73</td></tr><tr><td class="number">2</td><td>Bom Bairro - Vila Verde</td><td>2026-01-01 18:44:48</td><td>Bruno Silva (F002)</td><td class="number">173.47</td></tr><tr><td class="number">3</td><td>Bom Bairro - Jardim Sol</td><td>2026-01-01 11:35:10</td><td>Carla Silva (F003)</td><td class="number">287.56</td></tr><tr><td class="number">4</td><td>Bom Bairro - Centro</td><td>2026-01-01 20:12:39</td><td>Diego Silva (F004)</td><td class="number">29.76</td></tr><tr><td class="number">5</td><td>Bom Bairro - Vila Verde</td><td>2026-01-01 08:01:33</td><td>Elisa Silva (F005)</td><td class="number">130.88</td></tr><tr><td class="number">6</td><td>Bom Bairro - Jardim Sol</td><td>2026-01-01 16:27:13</td><td>Fabio Silva (F006)</td><td class="number">282.20</td></tr><tr><td class="number">7</td><td>Bom Bairro - Centro</td><td>2026-01-02 15:40:15</td><td>Gabriela Silva (F007)</td><td class="number">102.79</td></tr><tr><td class="number">8</td><td>Bom Bairro - Jardim Sol</td><td>2026-01-02 16:34:18</td><td>Henrique Silva (F008)</td><td class="number">116.36</td></tr><tr><td class="number">9</td><td>Bom Bairro - Centro</td><td>2026-01-02 19:03:48</td><td>Isabela Silva (F009)</td><td class="number">82.36</td></tr><tr><td class="number">10</td><td>Bom Bairro - Jardim Sol</td><td>2026-01-02 15:10:36</td><td>Joao Silva (F010)</td><td class="number">395.53</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT v.venda_id, l.nome AS loja, v.data_venda,
+       COALESCE(c.nome, &#x27;Nao identificado&#x27;) AS cliente,
+       v.total_centavos / 100.0 AS total_reais
+FROM vw_vendas_resumo AS v
+INNER JOIN lojas AS l ON l.id = v.loja_id
+LEFT JOIN clientes AS c ON c.id = v.cliente_id
+WHERE v.status = &#x27;CONCLUIDA&#x27;
+ORDER BY v.venda_id
+LIMIT 20;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E11" class="exercise">
+<div class="exercise-top"><span class="id">E11</span><span class="count">51 linhas no total</span></div>
+<h2>Clientes sem compras usando LEFT JOIN.</h2><p class="question">Liste id e nome dos clientes que nunca tiveram uma venda concluida. Ordene por id. Clientes que tenham somente vendas canceladas tambem entram.</p>
+<p class="preview">Prévia: primeiras 10 de 51 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E11"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th></tr></thead><tbody><tr><td class="number">116</td><td>Pedro Santos (F116)</td></tr><tr><td class="number">401</td><td>Julia Barbosa (F401)</td></tr><tr><td class="number">402</td><td>Lucas Barbosa (F402)</td></tr><tr><td class="number">403</td><td>Mariana Barbosa (F403)</td></tr><tr><td class="number">404</td><td>Nicolas Barbosa (F404)</td></tr><tr><td class="number">405</td><td>Olivia Barbosa (F405)</td></tr><tr><td class="number">406</td><td>Paulo Barbosa (F406)</td></tr><tr><td class="number">407</td><td>Renata Barbosa (F407)</td></tr><tr><td class="number">408</td><td>Sofia Barbosa (F408)</td></tr><tr><td class="number">409</td><td>Thiago Barbosa (F409)</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT c.id, c.nome
+FROM clientes AS c
+LEFT JOIN vendas AS v ON v.cliente_id = c.id AND v.status = &#x27;CONCLUIDA&#x27;
+WHERE v.id IS NULL
+ORDER BY c.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E12" class="exercise">
+<div class="exercise-top"><span class="id">E12</span><span class="count">120 linhas no total</span></div>
+<h2>Relacionamento muitos para muitos.</h2><p class="question">Liste os produtos oferecidos por pelo menos 2 fornecedores: id, produto, quantidade de fornecedores e menor/maior custo ofertado em reais. Ordene pela quantidade de fornecedores decrescente e depois pelo id.</p>
+<p class="preview">Prévia: primeiras 10 de 120 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E12"><table><thead><tr><th scope="col">id</th><th scope="col">produto</th><th scope="col">quantidade_fornecedores</th><th scope="col">menor_custo_reais</th><th scope="col">maior_custo_reais</th></tr></thead><tbody><tr><td class="number">1</td><td>Arroz branco 5 kg</td><td class="number">2</td><td class="number">16.54</td><td class="number">17.20</td></tr><tr><td class="number">2</td><td>Feijao carioca 1 kg</td><td class="number">2</td><td class="number">5.36</td><td class="number">5.57</td></tr><tr><td class="number">3</td><td>Acucar cristal 1 kg</td><td class="number">2</td><td class="number">3.30</td><td class="number">3.43</td></tr><tr><td class="number">4</td><td>Farinha de trigo 1 kg</td><td class="number">2</td><td class="number">3.74</td><td class="number">3.89</td></tr><tr><td class="number">5</td><td>Macarrao espaguete 500 g</td><td class="number">2</td><td class="number">3.57</td><td class="number">3.71</td></tr><tr><td class="number">6</td><td>Oleo de soja 900 ml</td><td class="number">2</td><td class="number">6.21</td><td class="number">6.46</td></tr><tr><td class="number">7</td><td>Sal refinado 1 kg</td><td class="number">2</td><td class="number">1.71</td><td class="number">1.78</td></tr><tr><td class="number">8</td><td>Molho de tomate 300 g</td><td class="number">2</td><td class="number">1.87</td><td class="number">1.94</td></tr><tr><td class="number">9</td><td>Cafe torrado 500 g</td><td class="number">2</td><td class="number">15.24</td><td class="number">15.85</td></tr><tr><td class="number">10</td><td>Aveia em flocos 170 g</td><td class="number">2</td><td class="number">3.88</td><td class="number">4.04</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT p.id, p.nome AS produto, COUNT(*) AS quantidade_fornecedores,
+       MIN(pf.custo_centavos) / 100.0 AS menor_custo_reais,
+       MAX(pf.custo_centavos) / 100.0 AS maior_custo_reais
+FROM produtos AS p
+INNER JOIN produto_fornecedores AS pf ON pf.produto_id = p.id
+GROUP BY p.id, p.nome
+HAVING COUNT(*) &gt;= 2
+ORDER BY quantidade_fornecedores DESC, p.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E13" class="exercise">
+<div class="exercise-top"><span class="id">E13</span><span class="count">3 linhas no total</span></div>
+<h2>Faturamento e ticket medio por loja.</h2><p class="question">Para cada loja com vendas concluidas, mostre nome, quantidade de vendas, faturamento liquido e ticket medio em reais, do maior faturamento ao menor.</p>
+<p class="preview">Resultado completo: 3 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E13"><table><thead><tr><th scope="col">loja</th><th scope="col">quantidade_vendas</th><th scope="col">faturamento_reais</th><th scope="col">ticket_medio_reais</th></tr></thead><tbody><tr><td>Bom Bairro - Centro</td><td class="number">673</td><td class="number">108155.99</td><td class="number">160.71</td></tr><tr><td>Bom Bairro - Jardim Sol</td><td class="number">458</td><td class="number">70755.28</td><td class="number">154.49</td></tr><tr><td>Bom Bairro - Vila Verde</td><td class="number">318</td><td class="number">50237.25</td><td class="number">157.98</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT l.nome AS loja, COUNT(*) AS quantidade_vendas,
+       SUM(v.total_centavos) / 100.0 AS faturamento_reais,
+       ROUND(AVG(v.total_centavos) / 100.0, 2) AS ticket_medio_reais
+FROM vw_vendas_resumo AS v
+INNER JOIN lojas AS l ON l.id = v.loja_id
+WHERE v.status = &#x27;CONCLUIDA&#x27;
+GROUP BY l.id, l.nome
+ORDER BY SUM(v.total_centavos) DESC, l.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E14" class="exercise">
+<div class="exercise-top"><span class="id">E14</span><span class="count">18 linhas no total</span></div>
+<h2>Clientes com maior gasto.</h2><p class="question">Liste clientes identificados que gastaram mais de R$ 1.000 em vendas concluidas. Mostre id, nome, quantidade de vendas e gasto total em reais. Ordene pelo gasto decrescente e depois pelo id.</p>
+<p class="preview">Prévia: primeiras 10 de 18 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E14"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th><th scope="col">quantidade_vendas</th><th scope="col">gasto_total_reais</th></tr></thead><tbody><tr><td class="number">175</td><td>Laura Costa (F175)</td><td class="number">8</td><td class="number">1583.63</td></tr><tr><td class="number">307</td><td>Gabriela Martins (F307)</td><td class="number">8</td><td class="number">1569.68</td></tr><tr><td class="number">313</td><td>Mariana Martins (F313)</td><td class="number">7</td><td class="number">1505.80</td></tr><tr><td class="number">47</td><td>Renata Souza (F047)</td><td class="number">8</td><td class="number">1263.71</td></tr><tr><td class="number">281</td><td>Julia Carvalho (F281)</td><td class="number">7</td><td class="number">1215.77</td></tr><tr><td class="number">60</td><td>Gustavo Souza (F060)</td><td class="number">6</td><td class="number">1184.39</td></tr><tr><td class="number">287</td><td>Renata Carvalho (F287)</td><td class="number">5</td><td class="number">1179.09</td></tr><tr><td class="number">33</td><td>Carla Souza (F033)</td><td class="number">6</td><td class="number">1148.29</td></tr><tr><td class="number">245</td><td>Elisa Ribeiro (F245)</td><td class="number">5</td><td class="number">1140.34</td></tr><tr><td class="number">312</td><td>Lucas Martins (F312)</td><td class="number">5</td><td class="number">1137.52</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT c.id, c.nome, COUNT(*) AS quantidade_vendas,
+       SUM(v.total_centavos) / 100.0 AS gasto_total_reais
+FROM clientes AS c
+INNER JOIN vw_vendas_resumo AS v ON v.cliente_id = c.id
+WHERE v.status = &#x27;CONCLUIDA&#x27;
+GROUP BY c.id, c.nome
+HAVING SUM(v.total_centavos) &gt; 100000
+ORDER BY SUM(v.total_centavos) DESC, c.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E15" class="exercise">
+<div class="exercise-top"><span class="id">E15</span><span class="count">10 linhas no total</span></div>
+<h2>Produtos com maior receita.</h2><p class="question">Mostre os 10 produtos com maior receita liquida em vendas concluidas. Inclua id, produto, unidade, quantidade vendida, quantidade de vendas distintas e receita em reais. Desempate a receita pelo menor id.</p>
+<p class="preview">Resultado completo: 10 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E15"><table><thead><tr><th scope="col">produto_id</th><th scope="col">produto</th><th scope="col">unidade</th><th scope="col">quantidade_vendida</th><th scope="col">quantidade_vendas</th><th scope="col">receita_reais</th></tr></thead><tbody><tr><td class="number">101</td><td>Racao caes adultos 3 kg</td><td>UN</td><td class="number">198</td><td class="number">102</td><td class="number">7592.59</td></tr><tr><td class="number">37</td><td>Queijo prato</td><td>KG</td><td class="number">173.604</td><td class="number">96</td><td class="number">7512.87</td></tr><tr><td class="number">22</td><td>Alcatra bovina</td><td>KG</td><td class="number">135.061</td><td class="number">79</td><td class="number">7098.44</td></tr><tr><td class="number">36</td><td>Queijo mussarela</td><td>KG</td><td class="number">178.434</td><td class="number">96</td><td class="number">6784.84</td></tr><tr><td class="number">29</td><td>File de tilapia</td><td>KG</td><td class="number">130.218</td><td class="number">83</td><td class="number">6218.11</td></tr><tr><td class="number">21</td><td>Patinho bovino</td><td>KG</td><td class="number">143.308</td><td class="number">85</td><td class="number">6164.08</td></tr><tr><td class="number">26</td><td>Costela bovina</td><td>KG</td><td class="number">159.707</td><td class="number">94</td><td class="number">4998.27</td></tr><tr><td class="number">1</td><td>Arroz branco 5 kg</td><td>UN</td><td class="number">194</td><td class="number">101</td><td class="number">4822.24</td></tr><tr><td class="number">48</td><td>Pao de queijo</td><td>KG</td><td class="number">169.802</td><td class="number">92</td><td class="number">4817.55</td></tr><tr><td class="number">86</td><td>Sorvete chocolate 1,5 L</td><td>UN</td><td class="number">200</td><td class="number">95</td><td class="number">4741.28</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT produto_id, produto, unidade,
+       ROUND(SUM(quantidade), 3) AS quantidade_vendida,
+       COUNT(DISTINCT venda_id) AS quantidade_vendas,
+       SUM(total_centavos) / 100.0 AS receita_reais
+FROM vw_itens_venda
+WHERE status = &#x27;CONCLUIDA&#x27;
+GROUP BY produto_id, produto, unidade
+ORDER BY SUM(total_centavos) DESC, produto_id
+LIMIT 10;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E16" class="exercise">
+<div class="exercise-top"><span class="id">E16</span><span class="count">3 linhas no total</span></div>
+<h2>Descontos por canal.</h2><p class="question">Para cada canal das vendas concluidas, mostre quantidade de vendas, valor bruto, descontos e receita liquida em reais. Calcule tambem a taxa de desconto: 100 * descontos / valor bruto, com duas casas decimais. Ordene pelo canal.</p>
+<p class="preview">Resultado completo: 3 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E16"><table><thead><tr><th scope="col">canal</th><th scope="col">quantidade_vendas</th><th scope="col">valor_bruto_reais</th><th scope="col">descontos_reais</th><th scope="col">receita_reais</th><th scope="col">taxa_desconto_percentual</th></tr></thead><tbody><tr><td>DELIVERY</td><td class="number">232</td><td class="number">38183.86</td><td class="number">559.64</td><td class="number">37624.22</td><td class="number">1.47</td></tr><tr><td>LOJA</td><td class="number">1090</td><td class="number">173882.89</td><td class="number">3030.66</td><td class="number">170852.23</td><td class="number">1.74</td></tr><tr><td>RETIRADA</td><td class="number">127</td><td class="number">21004.13</td><td class="number">332.06</td><td class="number">20672.07</td><td class="number">1.58</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT canal, COUNT(*) AS quantidade_vendas,
+       SUM(valor_bruto_centavos) / 100.0 AS valor_bruto_reais,
+       SUM(desconto_centavos) / 100.0 AS descontos_reais,
+       SUM(total_centavos) / 100.0 AS receita_reais,
+       ROUND(100.0 * SUM(desconto_centavos)
+             / NULLIF(SUM(valor_bruto_centavos), 0), 2) AS taxa_desconto_percentual
+FROM vw_vendas_resumo
+WHERE status = &#x27;CONCLUIDA&#x27;
+GROUP BY canal
+ORDER BY canal;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E17" class="exercise">
+<div class="exercise-top"><span class="id">E17</span><span class="count">207 linhas no total</span></div>
+<h2>Uma venda, varios pagamentos.</h2><p class="question">Liste as vendas concluidas com 2 ou mais registros de pagamento. Mostre id da venda, quantidade de pagamentos, total da venda e total pago em reais. Ordene por id da venda.</p>
+<p class="preview">Prévia: primeiras 10 de 207 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E17"><table><thead><tr><th scope="col">venda_id</th><th scope="col">quantidade_pagamentos</th><th scope="col">total_venda_reais</th><th scope="col">total_pago_reais</th></tr></thead><tbody><tr><td class="number">7</td><td class="number">2</td><td class="number">102.79</td><td class="number">102.79</td></tr><tr><td class="number">14</td><td class="number">2</td><td class="number">179.64</td><td class="number">179.64</td></tr><tr><td class="number">21</td><td class="number">2</td><td class="number">121.37</td><td class="number">121.37</td></tr><tr><td class="number">28</td><td class="number">2</td><td class="number">57.10</td><td class="number">57.10</td></tr><tr><td class="number">35</td><td class="number">2</td><td class="number">291.21</td><td class="number">291.21</td></tr><tr><td class="number">42</td><td class="number">2</td><td class="number">294.32</td><td class="number">294.32</td></tr><tr><td class="number">49</td><td class="number">2</td><td class="number">193.74</td><td class="number">193.74</td></tr><tr><td class="number">56</td><td class="number">2</td><td class="number">152.20</td><td class="number">152.20</td></tr><tr><td class="number">63</td><td class="number">2</td><td class="number">132.42</td><td class="number">132.42</td></tr><tr><td class="number">70</td><td class="number">2</td><td class="number">162.05</td><td class="number">162.05</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT v.venda_id, p.quantidade_pagamentos,
+       v.total_centavos / 100.0 AS total_venda_reais,
+       p.total_pago_centavos / 100.0 AS total_pago_reais
+FROM vw_vendas_resumo AS v
+INNER JOIN (
+    SELECT venda_id, COUNT(*) AS quantidade_pagamentos,
+           SUM(valor_centavos) AS total_pago_centavos
+    FROM pagamentos
+    GROUP BY venda_id
+) AS p ON p.venda_id = v.venda_id
+WHERE v.status = &#x27;CONCLUIDA&#x27;
+  AND p.quantidade_pagamentos &gt;= 2
+ORDER BY v.venda_id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E18" class="exercise">
+<div class="exercise-top"><span class="id">E18</span><span class="count">5 linhas no total</span></div>
+<h2>Receita recebida por forma de pagamento.</h2><p class="question">Para cada forma usada em vendas concluidas, mostre nome, quantidade de vendas distintas e total recebido em reais. Ordene pelo total decrescente e depois pelo nome. Uma venda dividida entre formas aparece em cada forma.</p>
+<p class="preview">Resultado completo: 5 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E18"><table><thead><tr><th scope="col">forma_pagamento</th><th scope="col">quantidade_vendas</th><th scope="col">total_recebido_reais</th></tr></thead><tbody><tr><td>Pix</td><td class="number">496</td><td class="number">71261.91</td></tr><tr><td>Cartao de debito</td><td class="number">381</td><td class="number">56765.00</td></tr><tr><td>Cartao de credito</td><td class="number">345</td><td class="number">47096.79</td></tr><tr><td>Dinheiro</td><td class="number">255</td><td class="number">33025.32</td></tr><tr><td>Vale-alimentacao</td><td class="number">179</td><td class="number">20999.50</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT f.nome AS forma_pagamento,
+       COUNT(DISTINCT p.venda_id) AS quantidade_vendas,
+       SUM(p.valor_centavos) / 100.0 AS total_recebido_reais
+FROM pagamentos AS p
+INNER JOIN formas_pagamento AS f ON f.id = p.forma_pagamento_id
+INNER JOIN vendas AS v ON v.id = p.venda_id
+WHERE v.status = &#x27;CONCLUIDA&#x27;
+GROUP BY f.id, f.nome
+ORDER BY SUM(p.valor_centavos) DESC, f.nome;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E19" class="exercise">
+<div class="exercise-top"><span class="id">E19</span><span class="count">4 linhas no total</span></div>
+<h2>Produtos nunca vendidos usando NOT EXISTS.</h2><p class="question">Liste id, codigo e nome dos produtos que nunca participaram de uma venda concluida, em ordem de id. Produtos apenas em vendas canceladas entram.</p>
+<p class="preview">Resultado completo: 4 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E19"><table><thead><tr><th scope="col">id</th><th scope="col">codigo</th><th scope="col">nome</th></tr></thead><tbody><tr><td class="number">117</td><td>MER-0117</td><td>Pote reutilizavel 1 L</td></tr><tr><td class="number">118</td><td>MER-0118</td><td>Pano de prato</td></tr><tr><td class="number">119</td><td>MER-0119</td><td>Luva de limpeza par</td></tr><tr><td class="number">120</td><td>MER-0120</td><td>Prendedor de roupa 12 un</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT p.id, p.codigo, p.nome
+FROM produtos AS p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM itens_venda AS i
+    INNER JOIN vendas AS v ON v.id = i.venda_id
+    WHERE i.produto_id = p.id
+      AND v.status = &#x27;CONCLUIDA&#x27;
+)
+ORDER BY p.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E20" class="exercise">
+<div class="exercise-top"><span class="id">E20</span><span class="count">161 linhas no total</span></div>
+<h2>Clientes de mais de um canal usando EXISTS.</h2><p class="question">Liste id e nome dos clientes que tenham pelo menos uma venda concluida no canal LOJA e pelo menos uma no canal DELIVERY. Ordene por id.</p>
+<p class="preview">Prévia: primeiras 10 de 161 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E20"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th></tr></thead><tbody><tr><td class="number">2</td><td>Bruno Silva (F002)</td></tr><tr><td class="number">6</td><td>Fabio Silva (F006)</td></tr><tr><td class="number">7</td><td>Gabriela Silva (F007)</td></tr><tr><td class="number">12</td><td>Lucas Silva (F012)</td></tr><tr><td class="number">13</td><td>Mariana Silva (F013)</td></tr><tr><td class="number">16</td><td>Paulo Silva (F016)</td></tr><tr><td class="number">17</td><td>Renata Silva (F017)</td></tr><tr><td class="number">18</td><td>Sofia Silva (F018)</td></tr><tr><td class="number">19</td><td>Thiago Silva (F019)</td></tr><tr><td class="number">20</td><td>Vitoria Silva (F020)</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT c.id, c.nome
+FROM clientes AS c
+WHERE EXISTS (
+    SELECT 1
+    FROM vendas AS v
+    WHERE v.cliente_id = c.id
+      AND v.status = &#x27;CONCLUIDA&#x27;
+      AND v.canal = &#x27;LOJA&#x27;
+)
+AND EXISTS (
+    SELECT 1
+    FROM vendas AS v
+    WHERE v.cliente_id = c.id
+      AND v.status = &#x27;CONCLUIDA&#x27;
+      AND v.canal = &#x27;DELIVERY&#x27;
+)
+ORDER BY c.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E21" class="exercise">
+<div class="exercise-top"><span class="id">E21</span><span class="count">53 linhas no total</span></div>
+<h2>Comparacao com a media da propria categoria.</h2><p class="question">Liste os produtos ativos cujo preco seja maior que a media dos produtos ativos da MESMA categoria. Mostre id, nome, categoria e preco em reais. Ordene por categoria, preco decrescente e id.</p>
+<p class="preview">Prévia: primeiras 10 de 53 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E21"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th><th scope="col">categoria</th><th scope="col">preco_reais</th></tr></thead><tbody><tr><td class="number">22</td><td>Alcatra bovina</td><td>Acougue</td><td class="number">54.90</td></tr><tr><td class="number">29</td><td>File de tilapia</td><td>Acougue</td><td class="number">49.90</td></tr><tr><td class="number">21</td><td>Patinho bovino</td><td>Acougue</td><td class="number">44.90</td></tr><tr><td class="number">27</td><td>Carne moida bovina</td><td>Acougue</td><td class="number">34.90</td></tr><tr><td class="number">26</td><td>Costela bovina</td><td>Acougue</td><td class="number">32.90</td></tr><tr><td class="number">55</td><td>Suco de uva 1 L</td><td>Bebidas</td><td class="number">11.90</td></tr><tr><td class="number">56</td><td>Suco de laranja 1 L</td><td>Bebidas</td><td class="number">10.90</td></tr><tr><td class="number">53</td><td>Refrigerante cola 2 L</td><td>Bebidas</td><td class="number">9.99</td></tr><tr><td class="number">54</td><td>Refrigerante guarana 2 L</td><td>Bebidas</td><td class="number">8.99</td></tr><tr><td class="number">58</td><td>Agua de coco 1 L</td><td>Bebidas</td><td class="number">8.99</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT p.id, p.nome, c.nome AS categoria,
+       p.preco_venda_centavos / 100.0 AS preco_reais
+FROM produtos AS p
+INNER JOIN categorias AS c ON c.id = p.categoria_id
+WHERE p.ativo = 1
+  AND p.preco_venda_centavos &gt; (
+      SELECT AVG(p2.preco_venda_centavos)
+      FROM produtos AS p2
+      WHERE p2.categoria_id = p.categoria_id
+        AND p2.ativo = 1
+  )
+ORDER BY c.nome, p.preco_venda_centavos DESC, p.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E22" class="exercise">
+<div class="exercise-top"><span class="id">E22</span><span class="count">3 linhas no total</span></div>
+<h2>Classificacao com CASE.</h2><p class="question">Separe as vendas concluidas em faixas de valor liquido: &#x27;Ate R$ 49,99&#x27;, &#x27;De R$ 50 a R$ 149,99&#x27; e &#x27;A partir de R$ 150&#x27;. Mostre a quantidade de vendas e a receita em reais de cada faixa existente, nessa ordem.</p>
+<p class="preview">Resultado completo: 3 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E22"><table><thead><tr><th scope="col">faixa_valor</th><th scope="col">quantidade_vendas</th><th scope="col">receita_reais</th></tr></thead><tbody><tr><td>Ate R$ 49,99</td><td class="number">111</td><td class="number">3895.12</td></tr><tr><td>De R$ 50 a R$ 149,99</td><td class="number">638</td><td class="number">64007.32</td></tr><tr><td>A partir de R$ 150</td><td class="number">700</td><td class="number">161246.08</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT CASE
+           WHEN total_centavos &lt; 5000 THEN &#x27;Ate R$ 49,99&#x27;
+           WHEN total_centavos &lt; 15000 THEN &#x27;De R$ 50 a R$ 149,99&#x27;
+           ELSE &#x27;A partir de R$ 150&#x27;
+       END AS faixa_valor,
+       COUNT(*) AS quantidade_vendas,
+       SUM(total_centavos) / 100.0 AS receita_reais
+FROM vw_vendas_resumo
+WHERE status = &#x27;CONCLUIDA&#x27;
+GROUP BY faixa_valor
+ORDER BY MIN(total_centavos);</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E23" class="exercise">
+<div class="exercise-top"><span class="id">E23</span><span class="count">9 linhas no total</span></div>
+<h2>Primeira CTE.</h2><p class="question">Calcule, para cada mes de janeiro a setembro de 2026, quantidade de vendas concluidas, receita e ticket medio em reais. Ordene cronologicamente.</p>
+<p class="preview">Resultado completo: 9 linhas.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E23"><table><thead><tr><th scope="col">mes</th><th scope="col">quantidade_vendas</th><th scope="col">receita_reais</th><th scope="col">ticket_medio_reais</th></tr></thead><tbody><tr><td>2026-01</td><td class="number">173</td><td class="number">28131.30</td><td class="number">162.61</td></tr><tr><td>2026-02</td><td class="number">163</td><td class="number">24791.06</td><td class="number">152.09</td></tr><tr><td>2026-03</td><td class="number">168</td><td class="number">27111.50</td><td class="number">161.38</td></tr><tr><td>2026-04</td><td class="number">159</td><td class="number">24261.16</td><td class="number">152.59</td></tr><tr><td>2026-05</td><td class="number">173</td><td class="number">27720.14</td><td class="number">160.23</td></tr><tr><td>2026-06</td><td class="number">173</td><td class="number">28135.90</td><td class="number">162.64</td></tr><tr><td>2026-07</td><td class="number">143</td><td class="number">21867.58</td><td class="number">152.92</td></tr><tr><td>2026-08</td><td class="number">158</td><td class="number">25648.96</td><td class="number">162.34</td></tr><tr><td>2026-09</td><td class="number">139</td><td class="number">21480.92</td><td class="number">154.54</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>WITH resumo_mensal AS (
+    SELECT strftime(&#x27;%Y-%m&#x27;, data_venda) AS mes,
+           COUNT(*) AS quantidade_vendas,
+           SUM(total_centavos) AS receita_centavos
+    FROM vw_vendas_resumo
+    WHERE status = &#x27;CONCLUIDA&#x27;
+      AND data_venda &gt;= &#x27;2026-01-01&#x27;
+      AND data_venda &lt; &#x27;2026-10-01&#x27;
+    GROUP BY strftime(&#x27;%Y-%m&#x27;, data_venda)
+)
+SELECT mes, quantidade_vendas, receita_centavos / 100.0 AS receita_reais,
+       ROUND(receita_centavos / 100.0 / quantidade_vendas, 2) AS ticket_medio_reais
+FROM resumo_mensal
+ORDER BY mes;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E24" class="exercise">
+<div class="exercise-top"><span class="id">E24</span><span class="count">33 linhas no total</span></div>
+<h2>Necessidade de reposicao.</h2><p class="question">No retrato de 2026-09-30, liste os produtos com quantidade_atual menor que quantidade_minima. Mostre loja, produto, unidade, quantidade atual, quantidade minima e quantidade necessaria para atingir o minimo. Ordene por loja e produto, usando produto_id para desempatar.</p>
+<p class="preview">Prévia: primeiras 10 de 33 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E24"><table><thead><tr><th scope="col">loja</th><th scope="col">produto</th><th scope="col">unidade</th><th scope="col">quantidade_atual</th><th scope="col">quantidade_minima</th><th scope="col">quantidade_para_repor</th></tr></thead><tbody><tr><td>Bom Bairro - Centro</td><td>Acai congelado 1 L</td><td>UN</td><td class="number">0</td><td class="number">8</td><td class="number">8</td></tr><tr><td>Bom Bairro - Centro</td><td>Batata congelada 1 kg</td><td>UN</td><td class="number">0</td><td class="number">8</td><td class="number">8</td></tr><tr><td>Bom Bairro - Centro</td><td>Gelatina morango 20 g</td><td>UN</td><td class="number">7</td><td class="number">8</td><td class="number">1</td></tr><tr><td>Bom Bairro - Centro</td><td>Laranja pera</td><td>KG</td><td class="number">0.058</td><td class="number">4</td><td class="number">3.942</td></tr><tr><td>Bom Bairro - Centro</td><td>Manga palmer</td><td>KG</td><td class="number">1.062</td><td class="number">4</td><td class="number">2.938</td></tr><tr><td>Bom Bairro - Centro</td><td>Oleo de soja 900 ml</td><td>UN</td><td class="number">1</td><td class="number">8</td><td class="number">7</td></tr><tr><td>Bom Bairro - Centro</td><td>Pano de prato</td><td>UN</td><td class="number">0</td><td class="number">8</td><td class="number">8</td></tr><tr><td>Bom Bairro - Centro</td><td>Pao de queijo</td><td>KG</td><td class="number">0.268</td><td class="number">4</td><td class="number">3.732</td></tr><tr><td>Bom Bairro - Centro</td><td>Pao frances</td><td>KG</td><td class="number">0.116</td><td class="number">4</td><td class="number">3.884</td></tr><tr><td>Bom Bairro - Centro</td><td>Papel aluminio 7,5 m</td><td>UN</td><td class="number">0</td><td class="number">8</td><td class="number">8</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT loja, produto, unidade, quantidade_atual, quantidade_minima,
+       ROUND(quantidade_minima - quantidade_atual, 3) AS quantidade_para_repor
+FROM vw_estoque_detalhado
+WHERE data_referencia = &#x27;2026-09-30&#x27;
+  AND precisa_repor = 1
+ORDER BY loja, produto, produto_id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E25" class="exercise">
+<div class="exercise-top"><span class="id">E25</span><span class="count">12 linhas no total</span></div>
+<h2>Margem bruta por categoria.</h2><p class="question">Para cada categoria com vendas concluidas, mostre receita liquida, custo dos produtos vendidos e margem bruta em reais. Mostre tambem a margem percentual: 100 * (receita - custo) / receita, com duas casas. Ordene pela margem em reais decrescente e depois pela categoria.</p>
+<p class="preview">Prévia: primeiras 10 de 12 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E25"><table><thead><tr><th scope="col">categoria</th><th scope="col">receita_reais</th><th scope="col">custo_reais</th><th scope="col">margem_bruta_reais</th><th scope="col">margem_bruta_percentual</th></tr></thead><tbody><tr><td>Acougue</td><td class="number">42652.65</td><td class="number">29982.68</td><td class="number">12669.97</td><td class="number">29.71</td></tr><tr><td>Congelados</td><td class="number">28613.62</td><td class="number">19506.51</td><td class="number">9107.11</td><td class="number">31.83</td></tr><tr><td>Pet shop</td><td class="number">27079.50</td><td class="number">18288.30</td><td class="number">8791.20</td><td class="number">32.46</td></tr><tr><td>Laticinios</td><td class="number">23366.46</td><td class="number">15256.87</td><td class="number">8109.59</td><td class="number">34.71</td></tr><tr><td>Padaria</td><td class="number">20457.51</td><td class="number">14515.20</td><td class="number">5942.31</td><td class="number">29.05</td></tr><tr><td>Mercearia</td><td class="number">16292.89</td><td class="number">11279.68</td><td class="number">5013.21</td><td class="number">30.77</td></tr><tr><td>Higiene</td><td class="number">15985.89</td><td class="number">11123.90</td><td class="number">4861.99</td><td class="number">30.41</td></tr><tr><td>Limpeza</td><td class="number">14219.20</td><td class="number">9763.50</td><td class="number">4455.70</td><td class="number">31.34</td></tr><tr><td>Bebidas</td><td class="number">13909.67</td><td class="number">9912.50</td><td class="number">3997.17</td><td class="number">28.74</td></tr><tr><td>Hortifruti</td><td class="number">11122.80</td><td class="number">7645.08</td><td class="number">3477.72</td><td class="number">31.27</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT c.nome AS categoria,
+       SUM(i.total_centavos) / 100.0 AS receita_reais,
+       SUM(i.custo_total_centavos) / 100.0 AS custo_reais,
+       SUM(i.total_centavos - i.custo_total_centavos) / 100.0 AS margem_bruta_reais,
+       ROUND(100.0 * SUM(i.total_centavos - i.custo_total_centavos)
+             / NULLIF(SUM(i.total_centavos), 0), 2) AS margem_bruta_percentual
+FROM vw_itens_venda AS i
+INNER JOIN categorias AS c ON c.id = i.categoria_id
+WHERE i.status = &#x27;CONCLUIDA&#x27;
+GROUP BY c.id, c.nome
+ORDER BY SUM(i.total_centavos - i.custo_total_centavos) DESC, c.nome;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E26" class="exercise">
+<div class="exercise-top"><span class="id">E26</span><span class="count">36 linhas no total</span></div>
+<h2>Ranking dentro de cada categoria.</h2><p class="question">Mostre os produtos nas 3 primeiras posicoes de receita liquida de cada categoria, usando apenas vendas concluidas. Inclua categoria, produto, receita em reais e posicao. Produtos empatados dividem a mesma posicao; a proxima posicao nao deve ser pulada. Ordene por categoria, posicao e id.</p>
+<p class="preview">Prévia: primeiras 10 de 36 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E26"><table><thead><tr><th scope="col">categoria</th><th scope="col">produto</th><th scope="col">receita_reais</th><th scope="col">posicao</th></tr></thead><tbody><tr><td>Acougue</td><td>Alcatra bovina</td><td class="number">7098.44</td><td class="number">1</td></tr><tr><td>Acougue</td><td>File de tilapia</td><td class="number">6218.11</td><td class="number">2</td></tr><tr><td>Acougue</td><td>Patinho bovino</td><td class="number">6164.08</td><td class="number">3</td></tr><tr><td>Bebidas</td><td>Suco de uva 1 L</td><td class="number">2248.53</td><td class="number">1</td></tr><tr><td>Bebidas</td><td>Suco de laranja 1 L</td><td class="number">2042.98</td><td class="number">2</td></tr><tr><td>Bebidas</td><td>Refrigerante cola 2 L</td><td class="number">1632.03</td><td class="number">3</td></tr><tr><td>Biscoitos e doces</td><td>Doce de leite 400 g</td><td class="number">1577.07</td><td class="number">1</td></tr><tr><td>Biscoitos e doces</td><td>Chocolate amargo 80 g</td><td class="number">1253.41</td><td class="number">2</td></tr><tr><td>Biscoitos e doces</td><td>Chocolate ao leite 80 g</td><td class="number">1237.24</td><td class="number">3</td></tr><tr><td>Congelados</td><td>Sorvete chocolate 1,5 L</td><td class="number">4741.28</td><td class="number">1</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>WITH receita_produto AS (
+    SELECT categoria_id, produto_id, produto,
+           SUM(total_centavos) AS receita_centavos
+    FROM vw_itens_venda
+    WHERE status = &#x27;CONCLUIDA&#x27;
+    GROUP BY categoria_id, produto_id, produto
+), ranking AS (
+    SELECT categoria_id, produto_id, produto, receita_centavos,
+           DENSE_RANK() OVER (
+               PARTITION BY categoria_id
+               ORDER BY receita_centavos DESC
+           ) AS posicao
+    FROM receita_produto
+)
+SELECT c.nome AS categoria, r.produto,
+       r.receita_centavos / 100.0 AS receita_reais, r.posicao
+FROM ranking AS r
+INNER JOIN categorias AS c ON c.id = r.categoria_id
+WHERE r.posicao &lt;= 3
+ORDER BY c.nome, r.posicao, r.produto_id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E27" class="exercise">
+<div class="exercise-top"><span class="id">E27</span><span class="count">27 linhas no total</span></div>
+<h2>Comparacao com o mes anterior.</h2><p class="question">Para cada loja e mes com vendas concluidas de janeiro a setembro de 2026, mostre receita, receita do mes anterior disponivel e variacao em reais. No primeiro mes de cada loja, os dois ultimos valores devem ficar NULL. Ordene por loja e mes.</p>
+<p class="preview">Prévia: primeiras 10 de 27 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E27"><table><thead><tr><th scope="col">loja</th><th scope="col">mes</th><th scope="col">receita_reais</th><th scope="col">receita_anterior_reais</th><th scope="col">variacao_reais</th></tr></thead><tbody><tr><td>Bom Bairro - Centro</td><td>2026-01</td><td class="number">12066.46</td><td class="null"><span>NULL</span></td><td class="null"><span>NULL</span></td></tr><tr><td>Bom Bairro - Centro</td><td>2026-02</td><td class="number">13736.02</td><td class="number">12066.46</td><td class="number">1669.56</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-03</td><td class="number">13932.77</td><td class="number">13736.02</td><td class="number">196.75</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-04</td><td class="number">11835.10</td><td class="number">13932.77</td><td class="number">-2097.67</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-05</td><td class="number">12240.39</td><td class="number">11835.10</td><td class="number">405.29</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-06</td><td class="number">12360.58</td><td class="number">12240.39</td><td class="number">120.19</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-07</td><td class="number">9519.36</td><td class="number">12360.58</td><td class="number">-2841.22</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-08</td><td class="number">11107.91</td><td class="number">9519.36</td><td class="number">1588.55</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-09</td><td class="number">11357.40</td><td class="number">11107.91</td><td class="number">249.49</td></tr><tr><td>Bom Bairro - Jardim Sol</td><td>2026-01</td><td class="number">10947.29</td><td class="null"><span>NULL</span></td><td class="null"><span>NULL</span></td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>WITH receita_mensal AS (
+    SELECT loja_id, strftime(&#x27;%Y-%m&#x27;, data_venda) AS mes,
+           SUM(total_centavos) AS receita_centavos
+    FROM vw_vendas_resumo
+    WHERE status = &#x27;CONCLUIDA&#x27;
+      AND data_venda &gt;= &#x27;2026-01-01&#x27;
+      AND data_venda &lt; &#x27;2026-10-01&#x27;
+    GROUP BY loja_id, strftime(&#x27;%Y-%m&#x27;, data_venda)
+), comparacao AS (
+    SELECT loja_id, mes, receita_centavos,
+           LAG(receita_centavos) OVER (
+               PARTITION BY loja_id ORDER BY mes
+           ) AS receita_anterior_centavos
+    FROM receita_mensal
+)
+SELECT l.nome AS loja, c.mes, c.receita_centavos / 100.0 AS receita_reais,
+       c.receita_anterior_centavos / 100.0 AS receita_anterior_reais,
+       (c.receita_centavos - c.receita_anterior_centavos) / 100.0 AS variacao_reais
+FROM comparacao AS c
+INNER JOIN lojas AS l ON l.id = c.loja_id
+ORDER BY l.nome, c.mes;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E28" class="exercise">
+<div class="exercise-top"><span class="id">E28</span><span class="count">27 linhas no total</span></div>
+<h2>Receita acumulada.</h2><p class="question">Para cada loja e mes com vendas concluidas de janeiro a setembro de 2026, mostre receita mensal e receita acumulada desde janeiro, em reais. Ordene por loja e mes.</p>
+<p class="preview">Prévia: primeiras 10 de 27 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E28"><table><thead><tr><th scope="col">loja</th><th scope="col">mes</th><th scope="col">receita_reais</th><th scope="col">receita_acumulada_reais</th></tr></thead><tbody><tr><td>Bom Bairro - Centro</td><td>2026-01</td><td class="number">12066.46</td><td class="number">12066.46</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-02</td><td class="number">13736.02</td><td class="number">25802.48</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-03</td><td class="number">13932.77</td><td class="number">39735.25</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-04</td><td class="number">11835.10</td><td class="number">51570.35</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-05</td><td class="number">12240.39</td><td class="number">63810.74</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-06</td><td class="number">12360.58</td><td class="number">76171.32</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-07</td><td class="number">9519.36</td><td class="number">85690.68</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-08</td><td class="number">11107.91</td><td class="number">96798.59</td></tr><tr><td>Bom Bairro - Centro</td><td>2026-09</td><td class="number">11357.40</td><td class="number">108155.99</td></tr><tr><td>Bom Bairro - Jardim Sol</td><td>2026-01</td><td class="number">10947.29</td><td class="number">10947.29</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>WITH receita_mensal AS (
+    SELECT loja_id, strftime(&#x27;%Y-%m&#x27;, data_venda) AS mes,
+           SUM(total_centavos) AS receita_centavos
+    FROM vw_vendas_resumo
+    WHERE status = &#x27;CONCLUIDA&#x27;
+      AND data_venda &gt;= &#x27;2026-01-01&#x27;
+      AND data_venda &lt; &#x27;2026-10-01&#x27;
+    GROUP BY loja_id, strftime(&#x27;%Y-%m&#x27;, data_venda)
+)
+SELECT l.nome AS loja, r.mes, r.receita_centavos / 100.0 AS receita_reais,
+       SUM(r.receita_centavos) OVER (
+           PARTITION BY r.loja_id
+           ORDER BY r.mes
+           ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+       ) / 100.0 AS receita_acumulada_reais
+FROM receita_mensal AS r
+INNER JOIN lojas AS l ON l.id = r.loja_id
+ORDER BY l.nome, r.mes;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E29" class="exercise">
+<div class="exercise-top"><span class="id">E29</span><span class="count">450 linhas no total</span></div>
+<h2>Recencia, frequencia e valor dos clientes.</h2><p class="question">Para TODOS os clientes, mostre id, nome, data da ultima venda concluida, dias desde essa venda ate 2026-09-30, quantidade de vendas concluidas e gasto total em reais no periodo de janeiro a setembro de 2026. Quem nao comprou deve ter quantidade/gasto zero e ultima data/dias NULL. Ordene pelo gasto decrescente e depois pelo id.</p>
+<p class="preview">Prévia: primeiras 10 de 450 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E29"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th><th scope="col">data_ultima_venda</th><th scope="col">dias_desde_ultima_venda</th><th scope="col">quantidade_vendas</th><th scope="col">gasto_total_reais</th></tr></thead><tbody><tr><td class="number">175</td><td>Laura Costa (F175)</td><td>2026-08-11</td><td class="number">50</td><td class="number">8</td><td class="number">1583.63</td></tr><tr><td class="number">307</td><td>Gabriela Martins (F307)</td><td>2026-09-22</td><td class="number">8</td><td class="number">8</td><td class="number">1569.68</td></tr><tr><td class="number">313</td><td>Mariana Martins (F313)</td><td>2026-09-30</td><td class="number">0</td><td class="number">7</td><td class="number">1505.80</td></tr><tr><td class="number">47</td><td>Renata Souza (F047)</td><td>2026-09-10</td><td class="number">20</td><td class="number">8</td><td class="number">1263.71</td></tr><tr><td class="number">281</td><td>Julia Carvalho (F281)</td><td>2026-09-03</td><td class="number">27</td><td class="number">7</td><td class="number">1215.77</td></tr><tr><td class="number">60</td><td>Gustavo Souza (F060)</td><td>2026-05-24</td><td class="number">129</td><td class="number">6</td><td class="number">1184.39</td></tr><tr><td class="number">287</td><td>Renata Carvalho (F287)</td><td>2026-08-12</td><td class="number">49</td><td class="number">5</td><td class="number">1179.09</td></tr><tr><td class="number">33</td><td>Carla Souza (F033)</td><td>2026-09-28</td><td class="number">2</td><td class="number">6</td><td class="number">1148.29</td></tr><tr><td class="number">245</td><td>Elisa Ribeiro (F245)</td><td>2026-05-21</td><td class="number">132</td><td class="number">5</td><td class="number">1140.34</td></tr><tr><td class="number">312</td><td>Lucas Martins (F312)</td><td>2026-09-03</td><td class="number">27</td><td class="number">5</td><td class="number">1137.52</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>WITH resumo_cliente AS (
+    SELECT cliente_id, MAX(data_venda) AS ultima_venda,
+           COUNT(*) AS quantidade_vendas,
+           SUM(total_centavos) AS gasto_centavos
+    FROM vw_vendas_resumo
+    WHERE status = &#x27;CONCLUIDA&#x27;
+      AND data_venda &gt;= &#x27;2026-01-01&#x27;
+      AND data_venda &lt; &#x27;2026-10-01&#x27;
+      AND cliente_id IS NOT NULL
+    GROUP BY cliente_id
+)
+SELECT c.id, c.nome, date(r.ultima_venda) AS data_ultima_venda,
+       CAST(julianday(&#x27;2026-09-30&#x27;) - julianday(date(r.ultima_venda)) AS INTEGER)
+           AS dias_desde_ultima_venda,
+       COALESCE(r.quantidade_vendas, 0) AS quantidade_vendas,
+       COALESCE(r.gasto_centavos, 0) / 100.0 AS gasto_total_reais
+FROM clientes AS c
+LEFT JOIN resumo_cliente AS r ON r.cliente_id = c.id
+ORDER BY COALESCE(r.gasto_centavos, 0) DESC, c.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E30" class="exercise">
+<div class="exercise-top"><span class="id">E30</span><span class="count">20 linhas no total</span></div>
+<h2>Desempenho dos fornecedores.</h2><p class="question">Para TODOS os fornecedores, mostre id, nome, quantidade de pedidos recebidos, pendentes e cancelados, e prazo medio REAL de recebimento em dias (duas casas). Calcule o prazo somente para pedidos recebidos. Fornecedor sem pedido recebido deve ter prazo medio NULL. Ordene por id.</p>
+<p class="preview">Prévia: primeiras 10 de 20 linhas, na ordem da consulta.</p><div class="table-scroll" tabindex="0" aria-label="Resultado E30"><table><thead><tr><th scope="col">id</th><th scope="col">nome</th><th scope="col">pedidos_recebidos</th><th scope="col">pedidos_pendentes</th><th scope="col">pedidos_cancelados</th><th scope="col">prazo_medio_real_dias</th></tr></thead><tbody><tr><td class="number">1</td><td>Distribuidora Ficticia 01</td><td class="number">8</td><td class="number">0</td><td class="number">1</td><td class="number">2</td></tr><tr><td class="number">2</td><td>Distribuidora Ficticia 02</td><td class="number">9</td><td class="number">0</td><td class="number">0</td><td class="number">3</td></tr><tr><td class="number">3</td><td>Distribuidora Ficticia 03</td><td class="number">8</td><td class="number">0</td><td class="number">1</td><td class="number">4</td></tr><tr><td class="number">4</td><td>Distribuidora Ficticia 04</td><td class="number">9</td><td class="number">0</td><td class="number">0</td><td class="number">5</td></tr><tr><td class="number">5</td><td>Distribuidora Ficticia 05</td><td class="number">9</td><td class="number">0</td><td class="number">0</td><td class="number">1</td></tr><tr><td class="number">6</td><td>Distribuidora Ficticia 06</td><td class="number">8</td><td class="number">0</td><td class="number">1</td><td class="number">2</td></tr><tr><td class="number">7</td><td>Distribuidora Ficticia 07</td><td class="number">9</td><td class="number">0</td><td class="number">0</td><td class="number">3</td></tr><tr><td class="number">8</td><td>Distribuidora Ficticia 08</td><td class="number">9</td><td class="number">0</td><td class="number">0</td><td class="number">4</td></tr><tr><td class="number">9</td><td>Distribuidora Ficticia 09</td><td class="number">8</td><td class="number">0</td><td class="number">1</td><td class="number">5</td></tr><tr><td class="number">10</td><td>Distribuidora Ficticia 10</td><td class="number">9</td><td class="number">0</td><td class="number">0</td><td class="number">1</td></tr></tbody></table></div>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>SELECT f.id, f.nome,
+       SUM(CASE WHEN c.status = &#x27;RECEBIDA&#x27; THEN 1 ELSE 0 END) AS pedidos_recebidos,
+       SUM(CASE WHEN c.status = &#x27;PENDENTE&#x27; THEN 1 ELSE 0 END) AS pedidos_pendentes,
+       SUM(CASE WHEN c.status = &#x27;CANCELADA&#x27; THEN 1 ELSE 0 END) AS pedidos_cancelados,
+       ROUND(AVG(CASE WHEN c.status = &#x27;RECEBIDA&#x27;
+                      THEN julianday(c.data_recebimento) - julianday(c.data_pedido)
+                 END), 2) AS prazo_medio_real_dias
+FROM fornecedores AS f
+LEFT JOIN compras AS c ON c.fornecedor_id = f.id
+GROUP BY f.id, f.nome
+ORDER BY f.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E31" class="exercise">
+<div class="exercise-top"><span class="id">E31</span><span class="count">0 linhas no total</span></div>
+<h2>Conferencia do estoque.</h2><p class="question">Confira cada par loja/produto do retrato de 2026-09-30: quantidade inicial + quantidade de compras RECEBIDAS no periodo - quantidade de vendas CONCLUIDAS no periodo deve ser igual a quantidade atual registrada. Retorne somente divergencias maiores que 0,000001, com loja, produto, unidade, saldo calculado, saldo registrado e diferenca (registrado - calculado). Considere movimentos de 2026-01-01 ate antes de 2026-10-01. Ordene por loja e produto. Resultado esperado no banco original: nenhuma linha.</p>
+<p class="preview">Resultado completo: 0 linhas. Este é o resultado esperado.</p><p class="empty">Nenhuma linha. A consulta de conferência não encontrou inconsistências.</p>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>WITH entradas AS (
+    SELECT c.loja_id, i.produto_id, SUM(i.quantidade) AS quantidade_recebida
+    FROM itens_compra AS i
+    INNER JOIN compras AS c ON c.id = i.compra_id
+    WHERE c.status = &#x27;RECEBIDA&#x27;
+      AND c.data_recebimento &gt;= &#x27;2026-01-01&#x27;
+      AND c.data_recebimento &lt; &#x27;2026-10-01&#x27;
+    GROUP BY c.loja_id, i.produto_id
+), saidas AS (
+    SELECT v.loja_id, i.produto_id, SUM(i.quantidade) AS quantidade_vendida
+    FROM itens_venda AS i
+    INNER JOIN vendas AS v ON v.id = i.venda_id
+    WHERE v.status = &#x27;CONCLUIDA&#x27;
+      AND v.data_venda &gt;= &#x27;2026-01-01&#x27;
+      AND v.data_venda &lt; &#x27;2026-10-01&#x27;
+    GROUP BY v.loja_id, i.produto_id
+), conferencia AS (
+    SELECT e.loja_id, e.produto_id, e.quantidade_atual,
+           e.quantidade_inicial + COALESCE(en.quantidade_recebida, 0)
+               - COALESCE(s.quantidade_vendida, 0) AS saldo_calculado
+    FROM estoques AS e
+    LEFT JOIN entradas AS en ON en.loja_id = e.loja_id AND en.produto_id = e.produto_id
+    LEFT JOIN saidas AS s ON s.loja_id = e.loja_id AND s.produto_id = e.produto_id
+    WHERE e.data_referencia = &#x27;2026-09-30&#x27;
+)
+SELECT l.nome AS loja, p.nome AS produto, p.unidade,
+       ROUND(c.saldo_calculado, 6) AS saldo_calculado,
+       c.quantidade_atual AS saldo_registrado,
+       ROUND(c.quantidade_atual - c.saldo_calculado, 6) AS diferenca
+FROM conferencia AS c
+INNER JOIN lojas AS l ON l.id = c.loja_id
+INNER JOIN produtos AS p ON p.id = c.produto_id
+WHERE ABS(c.quantidade_atual - c.saldo_calculado) &gt; 0.000001
+ORDER BY l.nome, p.nome, p.id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article>
+<article id="E32" class="exercise">
+<div class="exercise-top"><span class="id">E32</span><span class="count">0 linhas no total</span></div>
+<h2>Reconciliacao de pagamentos.</h2><p class="question">Confira TODAS as vendas: uma CONCLUIDA deve ter pagamentos cuja soma seja igual ao seu total liquido; uma CANCELADA deve ter total pago zero. Retorne somente divergencias, com id da venda, status, quantidade de pagamentos, valor esperado, valor pago e diferenca (pago - esperado), com dinheiro em reais. Ordene pelo id. Resultado esperado: nenhuma linha.</p>
+<p class="preview">Resultado completo: 0 linhas. Este é o resultado esperado.</p><p class="empty">Nenhuma linha. A consulta de conferência não encontrou inconsistências.</p>
+<details><summary>Ver a consulta do gabarito</summary><pre><code>WITH pagamentos_por_venda AS (
+    SELECT venda_id, COUNT(*) AS quantidade_pagamentos,
+           SUM(valor_centavos) AS valor_pago_centavos
+    FROM pagamentos
+    GROUP BY venda_id
+), conferencia AS (
+    SELECT v.venda_id, v.status,
+           COALESCE(p.quantidade_pagamentos, 0) AS quantidade_pagamentos,
+           CASE WHEN v.status = &#x27;CONCLUIDA&#x27; THEN v.total_centavos ELSE 0 END
+               AS valor_esperado_centavos,
+           COALESCE(p.valor_pago_centavos, 0) AS valor_pago_centavos
+    FROM vw_vendas_resumo AS v
+    LEFT JOIN pagamentos_por_venda AS p ON p.venda_id = v.venda_id
+)
+SELECT venda_id, status, quantidade_pagamentos,
+       valor_esperado_centavos / 100.0 AS valor_esperado_reais,
+       valor_pago_centavos / 100.0 AS valor_pago_reais,
+       (valor_pago_centavos - valor_esperado_centavos) / 100.0 AS diferenca_reais
+FROM conferencia
+WHERE valor_pago_centavos &lt;&gt; valor_esperado_centavos
+ORDER BY venda_id;</code></pre></details>
+<a class="top-link" href="#indice">Voltar ao índice ↑</a></article></main><footer class="wrap"><p>Resultados calculados com o SQLite da biblioteca padrão do Python. Os dados cobrem janeiro a setembro de 2026; o estoque é um retrato de 30/09/2026.</p>
+<p>Se você alterar a base, os resultados poderão mudar. Para recriar esta página e o relatório, execute <code>python3 validar_banco.py</code> na pasta do pacote.</p>
+<a href="LEIA-ME.html">Guia de estudo</a> · <a href="03_gabarito.sql">Consultas do gabarito</a> · <a href="validacao.txt">Relatório de validação</a></footer>
+</body></html>

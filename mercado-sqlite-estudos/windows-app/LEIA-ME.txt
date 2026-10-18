@@ -1,0 +1,2 @@
+Extraia todo o ZIP. Abra Mercado SQL.exe.
+Para executar SQL, importe conteudo\mercado.db em https://sqliteonline.com/.

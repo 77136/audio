@@ -1,0 +1,15 @@
+MERCADO SQL — PACOTE WINDOWS
+
+Compilacao cruzada feita em macOS com Zig oficial 0.17.0.
+PE32+ x86_64 validado; subsistema Windows GUI, sem janela de terminal.
+Importacoes DLL: SHELL32.dll, SHLWAPI.dll, ole32.dll, api-ms-win-crt-heap-l1-1-0.dll, api-ms-win-crt-locale-l1-1-0.dll, api-ms-win-crt-runtime-l1-1-0.dll, api-ms-win-crt-stdio-l1-1-0.dll, api-ms-win-crt-string-l1-1-0.dll, KERNEL32.dll, USER32.dll, api-ms-win-crt-environment-l1-1-0.dll, api-ms-win-crt-math-l1-1-0.dll.
+Nenhuma DLL de Python, Node ou Zig necessaria no computador Windows.
+Caminho do guia e fragmento #exercicios presentes no executavel.
+ZIP integro, extraido em pasta com espacos e acento para conferir conteudo.
+14 recursos identicos ao kit; todos os links locais do guia e resultados existem.
+As 3 abas do guia passaram em 57 verificacoes em Chrome no Mac.
+Abertura do .exe em Windows real NAO executada: ambiente disponivel e macOS.
+A validacao de extracao e de recursos nao substitui um teste de execucao Windows.
+SHA-256 EXE: 1fcad0d6d73bfe74e37dbedeb88678b6a38691e985ebf69d227449b794b9e9a7
+SHA-256 ZIP: be87172d175d8b03e52b081815d991fc8ac89e5ecdff0dd8f5bba224128542e7
+Tamanho EXE: 61,952 bytes; ZIP: 897,292 bytes.
