@@ -1,0 +1,135 @@
+MERCADO BOM BAIRRO — VALIDAÇÃO LOCAL
+Base inteiramente fictícia; período: janeiro a setembro de 2026.
+Referência do estoque: 2026-09-30.
+Motor utilizado nesta validação: SQLite 3.51.0 (Python stdlib).
+Banco original aberto em modo somente leitura; reconstrução SQL em :memory:.
+Comando para repetir: python3 validar_banco.py
+
+[OK] Integridade física
+[OK] Chaves estrangeiras — 0 inconsistências
+[OK] Estrutura esperada — 15 tabelas e 4 views
+
+CONTAGENS DE REGISTROS
+categorias: 12
+clientes: 450
+compras: 180
+estoques: 360
+formas_pagamento: 5
+fornecedores: 20
+funcionarios: 30
+itens_compra: 1274
+itens_venda: 11081
+lojas: 3
+marcas: 18
+pagamentos: 1656
+produto_fornecedores: 240
+produtos: 120
+vendas: 1500
+Total nas tabelas: 16949
+
+RECONSTRUÇÃO DO SCRIPT SQL
+[OK] Importação completa de 01_mercado.sql
+[OK] Integridade da reconstrução
+[OK] Chaves estrangeiras da reconstrução — 0 inconsistências
+[OK] Estruturas SQL idênticas
+[OK] Dados idênticos: categorias — 12 linhas
+[OK] Dados idênticos: clientes — 450 linhas
+[OK] Dados idênticos: compras — 180 linhas
+[OK] Dados idênticos: estoques — 360 linhas
+[OK] Dados idênticos: formas_pagamento — 5 linhas
+[OK] Dados idênticos: fornecedores — 20 linhas
+[OK] Dados idênticos: funcionarios — 30 linhas
+[OK] Dados idênticos: itens_compra — 1274 linhas
+[OK] Dados idênticos: itens_venda — 11081 linhas
+[OK] Dados idênticos: lojas — 3 linhas
+[OK] Dados idênticos: marcas — 18 linhas
+[OK] Dados idênticos: pagamentos — 1656 linhas
+[OK] Dados idênticos: produto_fornecedores — 240 linhas
+[OK] Dados idênticos: produtos — 120 linhas
+[OK] Dados idênticos: vendas — 1500 linhas
+[OK] Dados idênticos: vw_compras_resumo — 180 linhas
+[OK] Dados idênticos: vw_estoque_detalhado — 360 linhas
+[OK] Dados idênticos: vw_itens_venda — 11081 linhas
+[OK] Dados idênticos: vw_vendas_resumo — 1500 linhas
+
+CONSISTÊNCIA DOS NEGÓCIOS
+[OK] Valores dos itens versus cálculo decimal independente — 0 divergências
+[OK] Pagamentos conferem exatamente em centavos — 1449 vendas concluídas; 0 divergências
+[OK] Vendas canceladas sem pagamentos — 51 canceladas; 0 com pagamento
+[OK] Vendas com itens — 0 inconsistências
+[OK] Compras com itens — 0 inconsistências
+[OK] Cadastro de cliente anterior à venda — 0 inconsistências
+[OK] Admissão anterior à venda — 0 inconsistências
+[OK] Funcionário caixa da mesma loja — 0 inconsistências
+[OK] Abertura da loja anterior às vendas — 0 inconsistências
+[OK] Abertura da loja anterior às compras — 0 inconsistências
+[OK] Pagamento na data e hora da venda — 0 inconsistências
+[OK] Fornecedor autorizado para cada item de compra — 0 inconsistências
+[OK] Um fornecedor principal por produto — 0 inconsistências
+[OK] Status e recebimento das compras — 0 inconsistências
+[OK] Delivery e retirada com cliente identificado — 0 inconsistências
+[OK] Produtos inativos sem vendas — 0 inconsistências
+[OK] Dinheiro em centavos inteiros nos pagamentos — 0 inconsistências
+[OK] Dinheiro em centavos inteiros nos itens — 0 inconsistências
+[OK] Datas válidas — 4742 datas examinadas
+[OK] Quantidades de itens_venda: UN inteiras e KG até 3 casas — 0 inconsistências
+[OK] Quantidades de itens_compra: UN inteiras e KG até 3 casas — 0 inconsistências
+[OK] Quantidades de estoques: UN inteiras e KG até 3 casas — 0 inconsistências
+[OK] Todas as combinações de loja e produto possuem estoque — 360 posições
+[OK] Movimentos cobertos pelo cadastro de estoque
+[OK] Data de referência dos estoques — 2026-09-30
+[OK] Saldo inicial + compras recebidas - vendas concluídas = saldo final — 360 posições; 0 divergências
+[OK] Estoque cronológico nunca negativo — 11865 movimentos; mínimo 0; recebimentos às 06:00 e vendas no horário registrado
+
+EXECUÇÃO DAS 32 RESPOSTAS DO GABARITO
+[OK] Identificadores E01 a E32, únicos e em ordem
+[OK] E01: Primeira consulta. — 10 linhas; uma consulta de leitura
+[OK] E02: Filtros combinados. — 34 linhas; uma consulta de leitura
+[OK] E03: Busca parcial de texto. — 1 linha; uma consulta de leitura
+[OK] E04: Informacao ausente. — 56 linhas; uma consulta de leitura
+[OK] E05: Ordenacao e limite. — 5 linhas; uma consulta de leitura
+[OK] E06: Intervalo de datas. — 173 linhas; uma consulta de leitura
+[OK] E07: Resumo do cadastro. — 1 linha; uma consulta de leitura
+[OK] E08: Agrupamento e filtro de grupos. — 12 linhas; uma consulta de leitura
+[OK] E09: Relacionamentos obrigatorios. — 120 linhas; uma consulta de leitura
+[OK] E10: Relacionamento opcional. — 20 linhas; uma consulta de leitura
+[OK] E11: Clientes sem compras usando LEFT JOIN. — 51 linhas; uma consulta de leitura
+[OK] E12: Relacionamento muitos para muitos. — 120 linhas; uma consulta de leitura
+[OK] E13: Faturamento e ticket medio por loja. — 3 linhas; uma consulta de leitura
+[OK] E14: Clientes com maior gasto. — 18 linhas; uma consulta de leitura
+[OK] E15: Produtos com maior receita. — 10 linhas; uma consulta de leitura
+[OK] E16: Descontos por canal. — 3 linhas; uma consulta de leitura
+[OK] E17: Uma venda, varios pagamentos. — 207 linhas; uma consulta de leitura
+[OK] E18: Receita recebida por forma de pagamento. — 5 linhas; uma consulta de leitura
+[OK] E19: Produtos nunca vendidos usando NOT EXISTS. — 4 linhas; uma consulta de leitura
+[OK] E20: Clientes de mais de um canal usando EXISTS. — 161 linhas; uma consulta de leitura
+[OK] E21: Comparacao com a media da propria categoria. — 53 linhas; uma consulta de leitura
+[OK] E22: Classificacao com CASE. — 3 linhas; uma consulta de leitura
+[OK] E23: Primeira CTE. — 9 linhas; uma consulta de leitura
+[OK] E24: Necessidade de reposicao. — 33 linhas; uma consulta de leitura
+[OK] E25: Margem bruta por categoria. — 12 linhas; uma consulta de leitura
+[OK] E26: Ranking dentro de cada categoria. — 36 linhas; uma consulta de leitura
+[OK] E27: Comparacao com o mes anterior. — 27 linhas; uma consulta de leitura
+[OK] E28: Receita acumulada. — 27 linhas; uma consulta de leitura
+[OK] E29: Recencia, frequencia e valor dos clientes. — 450 linhas; uma consulta de leitura
+[OK] E30: Desempenho dos fornecedores. — 20 linhas; uma consulta de leitura
+[OK] E31: Conferencia do estoque. — 0 linhas; uma consulta de leitura
+[OK] E31 retorna zero inconsistências — 0 linhas
+[OK] E32: Reconciliacao de pagamentos. — 0 linhas; uma consulta de leitura
+[OK] E32 retorna zero inconsistências — 0 linhas
+
+RESULTADO: 88 verificações aprovadas; 0 falhas.
+Base e respostas aprovadas em todas as verificações acima.
+04_resultados_esperados.html recriado a partir das consultas executadas.
+
+VALIDAÇÃO NO NAVEGADOR — REGISTRO MANUAL
+Teste executado em Chrome isolado, headless, no site real https://sqliteonline.com/.
+Abertura do mercado.db pelo controle de arquivo do menu Open SQLite DB.
+Tabelas reconhecidas: 15. Views reconhecidas: 4.
+Consulta executada pelo botão Run: 120 produtos; 1.500 vendas;
+1.449 concluídas; 51 canceladas; faturamento de R$ 229.148,52.
+Evidência visual: teste-sqliteonline.png, na mesma pasta do pacote.
+Registro informado pelo agente responsável pelo teste do navegador.
+SHA-256 da base: e19f9e9246c399a6f883651b28a1aa92fc2f2815e510ea66fdea44c5c1442082
+Este registro é preservado nas reexecuções somente quando o arquivo .db é idêntico.
+O script Python não executa nem automatiza o teste de navegador.
